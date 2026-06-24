@@ -191,12 +191,33 @@ Do two things:
     choose**: pick the most fitting default layout and **write the prompt directly**, with a
     closing line "say the word if you want a different layout". **One fewer round-trip > one more
     choice.**
-- **You may ask more, even conversationally**: produce-it doesn't mind a few rounds — offer a
-  **thinking framework** to dial the figure to its best (What's this method's biggest highlight,
-  which step? Who's the reader / venue? Where should the eye land first? Want a side-by-side or
-  before/after? What can be abbreviated vs must be detailed?). The goal is to approach the best
-  presentation, not to finish asking.
 - focus / depth are usually clear to them; follow what they give.
+
+**🧭 Produce-it thinking chain (a process system — not making aesthetic decisions for the user)**
+We can't give scene-specific drawing advice for arbitrary figures, but we can give a process of
+**asking the right questions**: each step is a **clickable choice**, each maps to exactly one
+downstream decision, each lets the user defer with "you decide". **Options are generated at
+runtime from the user's own content** (except Q1, which is fixed) — never hardcoded. Understand-it
+runs a trimmed version (≤3 questions; focus is usually already harvested, so jump to Q3 / Step
+2.5); produce-it runs the full chain:
+
+```
+Q1 What's this figure for?      ──▶ sets style family + density
+   Fixed options: "Paper figure" (→ journal, dense) / "PPT / talk" (→ ppt, sparse, 16:9) /
+   "Sci-comm poster" (→ lively); plus free-text (the clickable tool's Other field).
+Q2 What to emphasize?           ──▶ sets focus + signature
+   Options ENUMERATED at runtime from the user's pipeline nodes: emphasize <core/novel module> /
+   <input·data> / <output·result> / spread evenly + "you decide".
+Q3 How deep to emphasize?       ──▶ sets depth
+   Overview (big-picture, no formulas) / Key mechanism (how the core works, no low-level) /
+   Full implementation (formulas · dimensions · boundary conditions) + "you decide".
+ → Step 2.5 direction choice (2–3 visual directions, each with an ASCII sketch — pick one)
+ → Step 3 prompt engineering
+```
+> Each question swaps exactly one decision (Q1→register, Q2→focus, Q3→depth), so "produce-it may
+> ask more" is a **chain that converges**, not loose chit-chat. The user can bail with "you decide
+> / just draw it" at any point and you pick the best. These are **presentation questions, not
+> content questions** — don't use them to re-teach the method they know better than you.
 
 **Produce-it · journal "three guarantees" (the three things most likely to go wrong in formal
 figures — handle as one step)**
@@ -233,6 +254,23 @@ didn't match what I wanted / it looks tacky".
   compare the directions without generating any image** — it's what makes this step useful, **don't
   skip it**. **Directions must differ** (different motif / composition), not tweaks of the same
   figure.
+  > **🎨 ASCII sketch craft (an unreadable sketch is worse than none — it MUST be legible):**
+  > ① **Label every shape with a short word; never leave a bare `●`/`□`** — a bare shape means
+  >    nothing.
+  > ② **Align columns** (monospace grid); show flow with `→ ↓ ↘`; draw forks/merges explicitly.
+  > ③ Consistent shape semantics: `[ ]`=module/panel, `( )`=station/node, `●`=data point,
+  >    `▢`=vector, `═/─`=track/connector.
+  > ④ **Show only this direction's distinguishing idea (its signature)**, not every detail — a
+  >    sketch is not the final figure; keep it ≤6 lines.
+  > ⑤ **One plain-language note underneath** stating the selling point / how it differs from the
+  >    others.
+  > Bad (illegible): `● ──▶ ●   ● ──▶ ●` (bare dots, unknown meaning, no note).
+  > Good:
+  > ```
+  > top   noisy-in  ─▶[②attn+MLP]─▶ ●H_L(noisy)   ┐
+  > bottom clean-in  ─▶[②attn+MLP]─▶ ●H_L(clean)  ┘→ same semantic region
+  > selling point: each dot is its own track's terminus; origin = its colored track; no dangling line
+  > ```
 - Offer it with **clickable options** (use an `AskUserQuestion`-style tool if present, else plain
   text). **If the tool has a preview field, put the ASCII sketch in the preview** so the directions
   compare side by side.

@@ -40,5 +40,12 @@ slowly hardening into a rigid template.
 Notable guardrails hardened from real test figures: every connector/line must be
 anchored at both ends (no dangling line whose origin is unknown); and the direction
 brainstorm is a hard gate — before the first figure the 2–3 visual directions must be
-surfaced as a clickable choice, **each carrying a small ASCII sketch** so the user can
-compare them without rendering anything.
+surfaced as a clickable choice, **each carrying a small ASCII sketch** (with explicit
+craft rules so the sketch is actually legible) so the user can compare them without
+rendering anything.
+
+The produce-it path runs a short **thinking chain** — a process, not scene-specific
+advice: *what's the figure for* (sets register/density) → *what to emphasize* (sets
+focus, options enumerated from the user's own content) → *how deep* (sets depth) → the
+direction choice. Each step is a clickable choice mapping to one decision, always with a
+"you decide" fallback.
