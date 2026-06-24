@@ -49,3 +49,10 @@ advice: *what's the figure for* (sets register/density) → *what to emphasize* 
 focus, options enumerated from the user's own content) → *how deep* (sets depth) → the
 direction choice. Each step is a clickable choice mapping to one decision, always with a
 "you decide" fallback.
+
+**Context-first + deck mode.** The skill checks what the conversation already settled and
+**doesn't re-ask the known** (if you're clearly making slides, it won't ask "what for");
+inferable axes are confirmed with the inferred answer as option #1. For a **set** of
+figures (a slide deck), it sets defaults once and per page asks only what varies —
+**depth stays a required, explicit choice on any mechanism/method figure** (never decided
+silently), while simple pages just confirm inferred focus/depth and pick a layout.

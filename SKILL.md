@@ -45,6 +45,13 @@ you and the image model. It is a **guardrail, not a template**.
 - **Question budget by intent:** **understand-it = at most 3 questions** (explainers should be
   fast); **produce-it may ask more, even go conversational** to help the user reach the best
   presentation.
+- **Context first — don't re-ask what's already known.** Before asking anything, check what the
+  conversation already settled: the platform, whether they're making a PPT, the purpose, a focus
+  you can infer from the content. **Don't ask the known** (if they're clearly making slides, don't
+  ask "what's it for"); **for things you can infer but want to confirm, ask quickly with your
+  inferred answer as option #1** (picking #1 = confirms your read, picking another = corrects it),
+  rather than asking from scratch. Spend questions on the axes that are genuinely uncertain *and*
+  would change this figure.
 - **Output by platform:**
   - **Claude = deliver `prompt.md` only, do not render.** Even if you judge a deterministic
     render (SVG/HTML) would be cleaner, **never render it yourself** — whether and how to
@@ -283,6 +290,31 @@ didn't match what I wanted / it looks tacky".
   lets a user who can't follow or doesn't want to choose hand it to you.
 - If the user says "whatever / you decide / just draw it" or picks the fallback, pick the most
   fitting direction and build it, with a closing "say the word to switch directions".
+
+### Step 2.6 — Deck mode (a set of figures: a slide deck / multi-page poster / a series, not one figure)
+
+When the task is a SET of figures, don't run the single-figure flow N times (that becomes dozens
+of questions). Instead: **set defaults once + per figure only ask what varies**:
+- **Deck-level defaults, set once at the start, never re-asked:** intent (e.g. making a PPT =
+  produce-it), style family + density, and a house style (the unifying visual thread that keeps N
+  pages one family). **If these are already known, don't ask them per page.**
+- **Per page, only run "what actually changes here":** focus / depth / direction (Step 2.5).
+- **Simple pages** (cover / background / closing): focus and depth are near-default → **state your
+  inferred values for a quick yes/no** ("focus = balanced, depth = overview — ok?"), don't
+  interrogate; often the only real choice is the layout direction.
+- **Content-heavy pages** (mechanism / method-design / complex case): focus, and **especially
+  depth, are real decisions** → see "depth is a required choice" below; surface them as clickable
+  options.
+- Carry the deck defaults across pages; only hand the user the incremental question. Goal: an
+  N-page deck ≈ 0–1 real question per page + one direction choice, not 4N questionnaires.
+
+> **Depth is a required choice on content-heavy figures (hard).** For any figure explaining a
+> **mechanism / method / implementation**, **depth MUST be surfaced as a clickable choice** (e.g.
+> `Overview (big picture, no formulas) / Key mechanism (how the core works) / Full implementation
+> (formulas, dimensions, boundaries)`, with your inferred level as option #1). **Never silently
+> decide depth** — it directly sets how deep the figure goes and is the knob the user most needs
+> to own. Same for focus: if inferable, confirm with "inferred = option #1", but **don't silently
+> skip it**.
 
 ### Step 3 — prompt engineering → figure-prompt.md (both paths converge here)
 
