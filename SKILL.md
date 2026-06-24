@@ -228,10 +228,14 @@ didn't match what I wanted / it looks tacky".
 > producing a figure with no choice ever offered = failure (unless the user said "you decide /
 > just draw it"). In practice this step is the most commonly skipped — don't skip it.
 - Each direction = a core presentation approach (composition + **which real object carries the
-  concept** + signature), one line + optional one-line ASCII; **directions must differ** (different
-  motif / composition), not tweaks of the same figure.
+  concept** + signature), one line + **always include a small ASCII sketch** (showing roughly what
+  it looks like: layout, key elements, how things connect). This lets the user **eyeball and
+  compare the directions without generating any image** — it's what makes this step useful, **don't
+  skip it**. **Directions must differ** (different motif / composition), not tweaks of the same
+  figure.
 - Offer it with **clickable options** (use an `AskUserQuestion`-style tool if present, else plain
-  text).
+  text). **If the tool has a preview field, put the ASCII sketch in the preview** so the directions
+  compare side by side.
 - **Understand-it gets this too, but just this one choice** — don't turn it back into a
   questionnaire; produce-it is already divergent, so this fits naturally.
 - No direction may be the "labeled box + arrows / stacked feature-layers" style (see
@@ -444,9 +448,9 @@ concept** (flow / comparison / timeline / pyramid / central-illustration …), n
     each concept drawn as a **real object** (not a labeled box)? Box-flow / tacky → **fails,
     rewrite.**
 11. **Offered the direction choice? (hard gate)** Before the first figure, were Step 2.5's 2–3
-    directions **actually surfaced as clickable options** for the user to pick? Quietly producing
-    a figure with no choice ever offered = failure (unless the user said "you decide / just draw
-    it").
+    directions **actually surfaced as clickable options** for the user to pick, **each with an
+    ASCII sketch** so they compare without rendering? Quietly producing a figure with no choice
+    ever offered = failure (unless the user said "you decide / just draw it").
 12. **Color harmony?** One coherent register? Any jarring clash (a dark-green block in a cool
     figure)? Warm accent only on the focal point.
 13. **Jargon explained in place?** Do in-figure technical labels (logit, embedding, softmax …)

@@ -38,6 +38,7 @@ slowly hardening into a rigid template.
 (`~/.codex/skills/`); the body is written in platform-neutral actions.
 
 Notable guardrails hardened from real test figures: every connector/line must be
-anchored at both ends (no dangling line whose origin is unknown), and the direction
-brainstorm is a hard gate (the 2–3 visual directions must actually be surfaced as a
-clickable choice before the first figure, not silently skipped).
+anchored at both ends (no dangling line whose origin is unknown); and the direction
+brainstorm is a hard gate — before the first figure the 2–3 visual directions must be
+surfaced as a clickable choice, **each carrying a small ASCII sketch** so the user can
+compare them without rendering anything.
