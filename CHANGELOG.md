@@ -1,5 +1,21 @@
 # Changelog — storytelling-figures
 
+## v5.0 — heuristic, option-driven guidance
+
+Less freedom, more guidance — the process becomes a **heuristic, step-by-step, options-only**
+walk that nudges the user toward the form they want, instead of inferring too much.
+
+- **Read the tone, adapt the question count.** Infer the user's expertise and clarity from how
+  they talk: distinctive signals → ask less / not at all; vague → ask. Explain-to-understand:
+  1–3 questions. Explain-to-teach / produce: ask more, heuristically.
+- **Options, never an interrogation.** Every question is clickable options (your inferred answer
+  as #1) with an always-present "your own / you decide" open slot — give angles *and* room.
+- **Information density via content coverage, not a density dial.** Don't ask "how dense"; ask
+  "how much to cover" (just the core / + key supporting / comprehensive). Density = coverage ×
+  depth, as a result the user can actually judge.
+- **Register-aware fonts.** `journal` keeps strict Arial-like sans; `ppt` may use a friendlier or
+  even **handwritten display font for titles** (a PPT-vs-journal differentiator), legibility first.
+
 ## v4.0
 
 First public release. A single self-contained `SKILL.md`; the deliverable is one

@@ -42,9 +42,16 @@ you and the image model. It is a **guardrail, not a template**.
 - **Every choice keeps a "you decide" fallback.** Every set of clickable options includes one
   option like **"Just present it the best way (I'm not sure — you decide)"**, so a user who
   doesn't follow the options or doesn't want to choose can let you pick the best and proceed.
-- **Question budget by intent:** **understand-it = at most 3 questions** (explainers should be
-  fast); **produce-it may ask more, even go conversational** to help the user reach the best
-  presentation.
+- **Read the tone, adapt how many you ask.** Before each prompt, infer the user's **expertise
+  level** and how clear their ask is from **how they talk** (word choice, tone). **Distinctive
+  signals (clearly an expert / clearly a layperson / very specific ask) → ask less or not at all;
+  vague / unreadable → treat as unclear and ask.** *Explain-to-understand-it-yourself*: **1–3
+  questions**, fast, don't tire a confused person. *Explain-to-teach-others / produce*: **ask more,
+  heuristically** — step the user toward the form they want.
+- **Always options, never an interrogation; always leave an open slot.** Every question is a set
+  of **clickable options** (your inferred answer as option #1), **never free-text interrogation**;
+  always include a **"your own / you decide"** open option (the tool's Other field) — give a few
+  angles *and* room for the user to express their own.
 - **Context first — don't re-ask what's already known.** Before asking anything, check what the
   conversation already settled: the platform, whether they're making a PPT, the purpose, a focus
   you can infer from the content. **Don't ask the known** (if they're clearly making slides, don't
@@ -215,12 +222,18 @@ Q1 What's this figure for?      ──▶ sets style family + density
 Q2 What to emphasize?           ──▶ sets focus + signature
    Options ENUMERATED at runtime from the user's pipeline nodes: emphasize <core/novel module> /
    <input·data> / <output·result> / spread evenly + "you decide".
-Q3 How deep to emphasize?       ──▶ sets depth
+Q3 How much content to cover?   ──▶ sets coverage (→ density follows; never ask "how dense")
+   Just the core / core + key supporting / comprehensive (more branches + detail) + "you decide".
+Q4 How deep to emphasize?       ──▶ sets depth
    Overview (big-picture, no formulas) / Key mechanism (how the core works, no low-level) /
    Full implementation (formulas · dimensions · boundary conditions) + "you decide".
  → Step 2.5 direction choice (2–3 visual directions, each with an ASCII sketch — pick one)
  → Step 3 prompt engineering
 ```
+> **Information density = coverage × depth — don't ask "how dense" (the user can't judge that),
+> ask "how much content to cover" (which they can).** More coverage + more depth → more density,
+> as a result. For explain-to-teach, run these as heuristic clickable steps with a "your own" slot;
+> for explain-to-understand, trim to 1–3 questions by tone.
 > Each question swaps exactly one decision (Q1→register, Q2→focus, Q3→depth), so "produce-it may
 > ask more" is a **chain that converges**, not loose chit-chat. The user can bail with "you decide
 > / just draw it" at any point and you pick the best. These are **presentation questions, not
@@ -461,9 +474,13 @@ composition, a real-primitive combo, a texture) — different every time; only `
 strong metaphor. Avoid AI tells: uniform gradients, cheap neon, floating particles. Texture-first:
 the professional family uses paper/vector/interface hierarchy, light shadow, real technical
 objects. **Completeness-first but not blind density**: the professional family can't be five empty
-boxes; nor force a one-trajectory topic into full-bleed. **Fonts**: legible labels, **common sizes,
-Arial-like sans**; the professional family avoids decorative faces. **Layout archetype follows the
-concept** (flow / comparison / timeline / pyramid / central-illustration …), not a fixed grid.
+boxes; nor force a one-trajectory topic into full-bleed. **Fonts are register-aware (one PPT-vs-journal differentiator)**:
+`journal` = strict Arial-like sans, common sizes; `ppt` may be friendlier — a clean sans, and even
+a **handwritten/hand-drawn display font for titles** (a signature move that sets it apart from
+journal), as long as it stays legible (body labels stay clear sans); `lively` = free. Rule:
+legibility first; reserve handwritten faces for PPT titles/accents, never body labels. **Layout
+archetype follows the concept** (flow / comparison / timeline / pyramid / central-illustration …),
+not a fixed grid.
 
 ---
 
