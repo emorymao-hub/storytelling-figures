@@ -519,22 +519,23 @@ not a fixed grid.
 > **Claude**: deliverable = this `.md`. **Codex**: deliverable = this `.md` **+ an image
 > generated on the spot with the native generator**, in the same reply.
 
-```markdown
-# <concept> — storytelling figure prompt
+**🔑 The file BODY = the pure prompt only, copyable in one select-all; ALL metadata goes in the
+FILENAME, not the body.** Users do `Cmd/Ctrl+A → copy → paste into the image tool`, so the file
+must contain **only the engineered image prompt** — no `# title`, no "Brief", no "Notes", no
+commentary mixed in (anything in the body gets copied with the prompt and pollutes it).
 
-## Brief
-- intent: <understand-it | produce-it>
-- one message: <verb-bearing core conclusion, a few sentences ok>
-- focus: <what to detail>   depth: <how deep>   style: <lively | ppt | journal> (ppt<->journal density is a continuous knob)
-- layout archetype: <flow | comparison | timeline | pyramid | hero-stat | central-illustration | ...>
+- **Body**: from the prompt's first line to the closing imperative — **nothing else**, clean enough
+  to paste whole.
+- **Metadata into the filename**: encode concept + intent + style, e.g.
+  `skill-vs-mcp.understand-ppt.figure-prompt.md` / `qtl.understand-journal.figure-prompt.md`
+  (`<concept>.<intent>-<style>.figure-prompt.md`).
+- **Hints/coordinates for the user** (focus/coverage/depth, "generate 3–4 and pick one", keep
+  `fucntion` misspelled, etc.) go **in the chat reply, never in the file.**
 
-## Prompt (paste into GPT image-2 / nano-banana)
-<engineered prompt: constraints block -> Subject...Style -> closing imperative>
-
-## Notes
-- All labels the figure needs (listed verbatim) — already in the prompt, one-shot, no post-fill
-- Generate 3–4 and pick one
-- reference image: how to converge style / re-state a region
+```
+<engineered English prompt: constraints block (SOURCE-LOCK + TEXT + DO NOT RENDER META)
+ -> Subject...Style -> closing imperative>
+(the whole file is just this block — no other lines)
 ```
 
 ---

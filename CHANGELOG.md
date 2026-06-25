@@ -1,5 +1,13 @@
 # Changelog — storytelling-figures
 
+## v5.4 — output contract: body = pure prompt (one select-all to copy), metadata in the filename
+
+Users copy with `Cmd/Ctrl+A → paste`, so the file body must be **only the engineered image prompt**
+— no title, no brief, no notes mixed in (they get copied with the prompt and pollute it). All
+metadata (concept + intent + style) goes in the **filename** (e.g.
+`skill-vs-mcp.understand-ppt.figure-prompt.md`); hints for the user go in the chat reply, not the
+file.
+
 ## v5.3 — visual effort follows focus (elaborate the core, stay quiet elsewhere)
 
 The figure used the right "arrows not railway" but rendered everything at one uniform elaboration —
