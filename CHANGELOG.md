@@ -1,5 +1,14 @@
 # Changelog — storytelling-figures
 
+## v5.1 — calibration: don't under-build out of garble-fear
+
+Tested reality: image models render legible dense text far better than feared (10+ labels +
+sub-panels came out clean), and the actual failure was the opposite — a sparse, **under-built**
+figure (a few icons + arrows + whitespace). So "cut labels" means cut *noise*, not make the figure
+sparse; default toward **complete and substantial** (every stage with internal detail, fill the
+frame), and if worried about garble, generate several and pick. Under-built is far more likely than
+garbled.
+
 ## v5.0 — heuristic, option-driven guidance
 
 Less freedom, more guidance — the process becomes a **heuristic, step-by-step, options-only**

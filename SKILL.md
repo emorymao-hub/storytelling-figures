@@ -106,6 +106,14 @@ you and the image model. It is a **guardrail, not a template**.
   whitespace with no internal structure) — it is **not** a push for density. **Never densify
   just to "look like Figure 1."** Stop when the mechanism is clear; spend effort on consistency
   and a complete purpose, not on cramming subpanels.
+- **Don't under-build out of garble-fear (tested calibration).** Image models handle *legible*
+  text far better than you'd fear — 10+ labels plus several sub-panels render cleanly in practice.
+  So "keep text minimal / cut labels" means **cut noise labels, NOT make the whole figure sparse.**
+  Default toward **complete and substantial**: give every stage internal detail, **fill the
+  frame** — don't ship "a few icons + arrows + lots of whitespace" (the most common failure isn't
+  garble, it's **under-completion**). If worried about garble, **generate several and pick** — don't
+  pre-emptively gut the figure. **Under-built ≫ garbled** in likelihood: the first almost always
+  happens, the second is fixed by re-rolling.
 - **Distill, don't transport.** Compress a long conversation into **one core message + the
   fewest necessary primitives/labels.** More labels and tiny text = more garble. One figure
   carries one core point; for each label ask "does the figure still stand without it?" — if
