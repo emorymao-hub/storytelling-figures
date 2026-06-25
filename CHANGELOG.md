@@ -1,5 +1,16 @@
 # Changelog — storytelling-figures
 
+## v5.2 — fix v5.1 + the "remove-the-labels" test + no machine metaphors
+
+Two corrections from real use: (1) v5.1's "default toward complete" was wrong — detailed-vs-simple
+is the **user's** coverage choice, not an agent default; the real failure is delivering *below* the
+level they chose (e.g. sparse when they asked comprehensive). (2) A new **"remove-the-labels"
+test**: cover an element's text — can you still tell what it is? If not (generic icon / empty box,
+the word does all the work) it's decoration and fails; each element must depict its real content
+(e.g. draw "direction choice" as real ASCII rows). Plus: don't use "icon + one word" throughout,
+and draw flow/forks as clean arrows — never a machine metaphor (railway tracks, gears), too
+unserious even for a PPT.
+
 ## v5.1 — calibration: don't under-build out of garble-fear
 
 Tested reality: image models render legible dense text far better than feared (10+ labels +

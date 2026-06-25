@@ -101,19 +101,29 @@ you and the image model. It is a **guardrail, not a template**.
   (a real slice, molecule, curve, matrix, interface — draw the actual thing) with modern
   composition and real material/depth. Panels and arrows may *connect* things, but a labeled
   box must **never stand in for the concept itself**.
+- **The "remove-the-labels" test (the hard ruler for tacky).** Cover each element's text label —
+  **can you still tell what it is?** If not (just a generic icon / empty box doing nothing, with the
+  word carrying all the meaning) = decoration, **fails**. Each element must **depict its real
+  content/structure** so it reads even with labels removed (good examples: draw "direction choice"
+  as a few real ASCII sketch rows; "scoring" as real score bars; "a fork" as real arrows converging
+  / diverging). Two corollaries: ① **don't use "icon + one word" throughout** — it's monotone and
+  hollow; an icon-plus-caption is fine occasionally, not for the whole figure; ② **draw flow/forks
+  as clean arrows, never as a machine metaphor** (no railway tracks, gears, machines — too
+  unserious, even for a PPT).
 - **Clarity is primary; completeness is only a floor.** Explaining clearly always wins.
   Completeness only guarantees **not half-baked** (not a few empty boxes + arrows + vast
   whitespace with no internal structure) — it is **not** a push for density. **Never densify
   just to "look like Figure 1."** Stop when the mechanism is clear; spend effort on consistency
   and a complete purpose, not on cramming subpanels.
-- **Don't under-build out of garble-fear (tested calibration).** Image models handle *legible*
-  text far better than you'd fear — 10+ labels plus several sub-panels render cleanly in practice.
-  So "keep text minimal / cut labels" means **cut noise labels, NOT make the whole figure sparse.**
-  Default toward **complete and substantial**: give every stage internal detail, **fill the
-  frame** — don't ship "a few icons + arrows + lots of whitespace" (the most common failure isn't
-  garble, it's **under-completion**). If worried about garble, **generate several and pick** — don't
-  pre-emptively gut the figure. **Under-built ≫ garbled** in likelihood: the first almost always
-  happens, the second is fixed by re-rolling.
+- **Completeness follows the user's coverage choice; never downgrade out of garble-fear (tested
+  calibration).** Detailed-vs-simple is the **user's** call (the coverage axis) — keep it simple if
+  they want simple, give real detail if they want detail. **Don't impose your own default of
+  "complete" or "sparse."** The real failure is **delivering a sparse figure when the user asked for
+  comprehensive** (below the level they chose). Image models handle *legible* dense text far better
+  than feared (10+ labels + sub-panels render cleanly), so "cut labels" means cut **noise**, and
+  **garble-fear is never a reason to drop below the chosen level** — render the detail they asked
+  for and **re-roll if garbled.** Under-built is far more likely than garbled, and easier to ship by
+  accident — guard against it.
 - **Distill, don't transport.** Compress a long conversation into **one core message + the
   fewest necessary primitives/labels.** More labels and tiny text = more garble. One figure
   carries one core point; for each label ask "does the figure still stand without it?" — if
