@@ -1,5 +1,14 @@
 # Changelog — storytelling-figures
 
+## v5.8 — promote axis-surfacing to its own Step 2.4 (structure, since stronger wording didn't work)
+
+v5.7 made axis-surfacing a "hard-gate bullet" but GPT still only popped the ASCII direction and
+skipped it. The Codex install was confirmed up to date (symlinked to the live folder), so it wasn't a
+sync issue — it's structural: GPT executes titled *Steps* and skims bullets. Fix: the axis question is
+now its own **`Step 2.4 — surface focus/depth/style`**, a peer of `Step 2.5 (direction)`, both hard
+gates, both required, with a plain-text fallback. When wording strength fails, fix it with structural
+rank.
+
 ## v5.7 — cross-platform consistency: the axis question is a hard gate
 
 Same skill, but Claude ran the full v5 flow while GPT only popped the Step 2.5 ASCII direction choice

@@ -311,7 +311,24 @@ figures — handle as one step)**
   composition ideas**; treat rendered text as placeholder and finalize real labels in a vector
   tool.
 
-### Step 2.5 — direction brainstorm (the big choice, on by default)
+### Step 2.4 — surface the axes: focus / depth / style (**hard gate ①, must actually be shown**)
+
+**The first choice gate before any output.** Present these axes **as options** (your inferred answer
+as #1, plus a "your own" slot) and wait for the pick before continuing:
+- **focus** — which part the figure emphasizes (options drawn from the content).
+- **depth** — how deep (overview / key mechanism / full implementation); mandatory for mechanism/method figures.
+- **style** — the register (default ppt; ask about journal/lively unless obvious).
+- **coverage** (for content-heavy figures) — how much to cover (just core / core + key support / comprehensive) → sets density.
+
+> 🔴 **This is a hard gate at the same tier as Step 2.5 — do BOTH.** Popping only the direction
+> (Step 2.5) while silently fixing focus/depth/style = **failure** (real case: GPT only popped the
+> ASCII direction and skipped this step).
+> **Platform fallback:** use a clickable-option tool if present; **otherwise list the options as plain
+> numbered text** (`1. … 2. … 3. … 4. your own`) — don't skip asking because you can't render cards.
+> Understand-it may bundle into one or two screens, but **never skip every axis**; only collapse to
+> "Step 2.5 only" when the user clearly signals "I'm lost / keep it simple / you decide."
+
+### Step 2.5 — direction brainstorm (the big choice, **hard gate ②, on by default**)
 
 Before drawing, give the user **one high-leverage choice**: brainstorm **2–3 genuinely different
 visual directions** to pick from, then build out the chosen one. This step fixes "the result
