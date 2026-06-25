@@ -1,5 +1,15 @@
 # Changelog — storytelling-figures
 
+## v5.3 — visual effort follows focus (elaborate the core, stay quiet elsewhere)
+
+The figure used the right "arrows not railway" but rendered everything at one uniform elaboration —
+the core (the understand/produce fork, the thinking chain) drawn as small as the secondary stages,
+while connectors got treated as if they mattered. New rule: **visual effort is the visual form of
+focus.** Spend the rich, figurative detail on the focal/core elements (make them the larger heroes,
+depicted as real illustrations — converge = many→one, diverge = one→many, a chain of choices
+narrowing); keep connectors and secondary elements restrained (a plain arrow is enough). Don't draw
+the whole figure at one level of elaboration.
+
 ## v5.2 — fix v5.1 + the "remove-the-labels" test + no machine metaphors
 
 Two corrections from real use: (1) v5.1's "default toward complete" was wrong — detailed-vs-simple

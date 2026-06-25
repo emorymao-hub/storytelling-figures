@@ -110,6 +110,15 @@ you and the image model. It is a **guardrail, not a template**.
   hollow; an icon-plus-caption is fine occasionally, not for the whole figure; ② **draw flow/forks
   as clean arrows, never as a machine metaphor** (no railway tracks, gears, machines — too
   unserious, even for a PPT).
+- **Visual effort follows focus (elaborate where it matters, stay quiet where it doesn't).** Spend
+  the "make it rich and figurative" budget on the **core/focal elements** — they deserve a real
+  visualized illustration (depict the idea so it's instantly readable: converge = many points
+  funneling to one, diverge = one fanning to many, a chain of choices narrowing step by step) and
+  should be the **larger visual heroes**. Keep **connectors and secondary elements restrained** — a
+  plain arrow is enough for a connector; don't decorate it; pass quietly over secondary stages. **Do
+  NOT render the whole figure at one uniform elaboration** — that wastes effort on the unimportant
+  and buries the core. This is the **visual form of focus**: the focal parts aren't just "more
+  labels," they're **drawn more figuratively and finely**.
 - **Clarity is primary; completeness is only a floor.** Explaining clearly always wins.
   Completeness only guarantees **not half-baked** (not a few empty boxes + arrows + vast
   whitespace with no internal structure) — it is **not** a push for density. **Never densify
