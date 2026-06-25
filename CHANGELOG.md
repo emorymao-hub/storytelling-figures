@@ -1,5 +1,16 @@
 # Changelog — storytelling-figures
 
+## v5.5 — don't rush to ship: gather fully, surface every axis, real brainstorm
+
+Tested failures, one root cause — the skill rushed to output instead of helping the user think it
+through: (1) an "explain skill vs MCP" ask was classed understand-it and only the direction got
+asked while focus/coverage/depth/style were decided silently; (2) the ASCII brainstorm was too crude
+to be a real brainstorm; (3) it generated the prompt before the user finished saying what the figure
+should express. Fixes: always **surface focus/depth/style as options** (inferred #1, never silent;
+understand-it may bundle into 1–2 quick screens); **don't generate until the content is fully in**
+(confirm "what else should it show?" first); the **brainstorm is real** — each direction has a core
+approach + why-it-differs + a legible sketch, not a skeletal ASCII standing in for a description.
+
 ## v5.4 — output contract: body = pure prompt (one select-all to copy), metadata in the filename
 
 Users copy with `Cmd/Ctrl+A → paste`, so the file body must be **only the engineered image prompt**

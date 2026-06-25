@@ -55,6 +55,13 @@ you and the image model. It is a **guardrail, not a template**.
   of **clickable options** (your inferred answer as option #1), **never free-text interrogation**;
   always include a **"your own / you decide"** open option (the tool's Other field) — give a few
   angles *and* room for the user to express their own.
+- **🛑 Don't generate until the content is fully in (don't rush to ship).** Before writing the
+  prompt, make sure **the user has finished telling you what the figure should express** — for
+  produce/explain figures, **ask/confirm "what else do you want in it?"** (the emphasis, the
+  contrast, the examples, the sub-blocks) before generating. **If you still have a real blank about
+  *what this figure must say*, or the user is still adding, keep gathering — do NOT move to Step
+  2.5 / output.** Rushing out a prompt on half the information is the most common, most annoying
+  failure; confirm one more round rather than ship on partial input.
 - **Context first — don't re-ask what's already known.** Before asking anything, check what the
   conversation already settled: the platform, whether they're making a PPT, the purpose, a focus
   you can infer from the content. **Don't ask the known** (if they're clearly making slides, don't
@@ -210,8 +217,13 @@ Do two things:
   grasp). For implementation depth, use the **Deep-dive gate** below.
 - **One message**: the **core point that resolves the confusion** (a few sentences ok; each is
   a verb-bearing conclusion, not a topic).
-- **focus / depth**: mostly inferred from the chat, at most one confirmation; no triple
-  questionnaire.
+- **Always surface focus / depth / style as clickable options (inferred as #1) — never decide them
+  silently.** Understand-it may **bundle them into one or two quick screens** (e.g. focus+depth on
+  one, style on another) so it doesn't feel like an interrogation, but **never skip straight to
+  output with zero axes asked** — only collapse to "direction only" when the user clearly signals "I'm
+  lost / keep it simple / you decide." **Silently deciding the axes is a failure** (a real one:
+  an explain request was classed understand-it and only the direction got asked, while
+  focus/coverage/depth/style were all decided silently).
 - **Style**: default `ppt` (clean, clear, whitespace, professional — can be polished and
   colorful, but **no cartoon, no glow, no mascots**). For deep/complex content dial toward
   `journal` (a denser method figure); **density follows clarity — if mid-density explains it,
@@ -298,12 +310,14 @@ didn't match what I wanted / it looks tacky".
 > 2–3 directions as clickable options and wait for a pick before writing the prompt.** Quietly
 > producing a figure with no choice ever offered = failure (unless the user said "you decide /
 > just draw it"). In practice this step is the most commonly skipped — don't skip it.
-- Each direction = a core presentation approach (composition + **which real object carries the
-  concept** + signature), one line + **always include a small ASCII sketch** (showing roughly what
-  it looks like: layout, key elements, how things connect). This lets the user **eyeball and
-  compare the directions without generating any image** — it's what makes this step useful, **don't
-  skip it**. **Directions must differ** (different motif / composition), not tweaks of the same
-  figure.
+- **This is a real brainstorm — not three skeletal ASCII lines.** Each direction must be something
+  the user can genuinely evaluate and choose between, with at least: ① **one sentence on the core
+  presentation approach** (which real object/metaphor carries the concept, the overall composition,
+  the signature, what it emphasizes); ② **a line or two on "why it fits / how it differs from the
+  others"**; ③ **a legible** ASCII sketch (a supplement, not decoration). **Directions must be
+  fundamentally different** (different motif / composition / emphasis) — genuinely distinct design
+  concepts, not tweaks of one figure. **Don't let a crude ASCII stand in for a real description of
+  the direction.**
   > **🎨 ASCII sketch craft (an unreadable sketch is worse than none — it MUST be legible):**
   > ① **Label every shape with a short word; never leave a bare `●`/`□`** — a bare shape means
   >    nothing.
