@@ -1,5 +1,14 @@
 # Changelog — storytelling-figures
 
+## v5.7 — cross-platform consistency: the axis question is a hard gate
+
+Same skill, but Claude ran the full v5 flow while GPT only popped the Step 2.5 ASCII direction choice
+and skipped focus/depth/style entirely. Root cause: the axis-surfacing rule wasn't as loud as the
+direction hard gate, and didn't spell out the plain-text fallback. Fix: **surfacing focus/depth/style
+is now a hard gate at the same tier as the direction choice** ("the direction pick does not replace
+the axes — surface both"), with an explicit **platform fallback** (no clickable tool → list options as
+plain numbered text; never skip asking just because you can't render cards).
+
 ## v5.6 — match the user's language
 
 An English ask ("Help me draw a diagram…") got answered entirely in Chinese (the skill inherited a

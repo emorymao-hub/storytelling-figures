@@ -222,13 +222,18 @@ Do two things:
   grasp). For implementation depth, use the **Deep-dive gate** below.
 - **One message**: the **core point that resolves the confusion** (a few sentences ok; each is
   a verb-bearing conclusion, not a topic).
-- **Always surface focus / depth / style as clickable options (inferred as #1) — never decide them
-  silently.** Understand-it may **bundle them into one or two quick screens** (e.g. focus+depth on
-  one, style on another) so it doesn't feel like an interrogation, but **never skip straight to
-  output with zero axes asked** — only collapse to "direction only" when the user clearly signals "I'm
-  lost / keep it simple / you decide." **Silently deciding the axes is a failure** (a real one:
-  an explain request was classed understand-it and only the direction got asked, while
-  focus/coverage/depth/style were all decided silently).
+- **🔴 Axis gate: focus / depth / style MUST be surfaced as options (same tier as the direction
+  choice, not a suggestion).** Before output, **always present these axes** (your inferred answer as
+  #1); **never decide them silently.**
+  - **The direction choice (the Step 2.5 ASCII pick) does NOT replace surfacing the axes** — offering
+    only the direction while silently fixing focus/depth/style = **failure** (real case: on GPT it
+    only popped the ASCII direction and skipped all the axes). **Surface both.**
+  - **Platform fallback (critical):** use a clickable-option tool if available; **if not, list the
+    options as plain numbered text** (`1. … 2. … 3. … 4. your own`) — **do not skip asking just
+    because you can't render fancy cards.** Every platform (Claude / Codex / other) must surface them.
+  - Understand-it may **bundle into one or two quick screens** (focus+depth on one, style on another);
+    only collapse to "direction only" when the user clearly signals "I'm lost / keep it simple / you
+    decide."
 - **Style**: default `ppt` (clean, clear, whitespace, professional — can be polished and
   colorful, but **no cartoon, no glow, no mascots**). For deep/complex content dial toward
   `journal` (a denser method figure); **density follows clarity — if mid-density explains it,
