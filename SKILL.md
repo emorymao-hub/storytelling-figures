@@ -120,6 +120,12 @@ you and the image model. It is a **guardrail, not a template**.
   hollow; an icon-plus-caption is fine occasionally, not for the whole figure; ② **draw flow/forks
   as clean arrows, never as a machine metaphor** (no railway tracks, gears, machines — too
   unserious, even for a PPT).
+- **Draw a shared element ONCE (make sameness structural, not coincidental).** When two paths must
+  hit the **same thing** (the same ID / node / region), draw it as **one shared element that both
+  paths merge into** — **not two copies that each point at the same target** (image models render
+  those as two *different* targets and the "sameness" is lost). Say it in the prompt: "draw it ONCE,
+  both arrows merge into it." (Real failure: in a misspelling figure both words' `gr` token was drawn
+  twice, each wired to row #412 → the render sent them to different rows.)
 - **Visual effort follows focus (elaborate where it matters, stay quiet where it doesn't).** Spend
   the "make it rich and figurative" budget on the **core/focal elements** — they deserve a real
   visualized illustration (depict the idea so it's instantly readable: converge = many points
@@ -567,11 +573,22 @@ commentary mixed in (anything in the body gets copied with the prompt and pollut
 
 - **Body**: from the prompt's first line to the closing imperative — **nothing else**, clean enough
   to paste whole.
-- **Metadata into the filename**: encode concept + intent + style, e.g.
-  `skill-vs-mcp.understand-ppt.figure-prompt.md` / `qtl.understand-journal.figure-prompt.md`
-  (`<concept>.<intent>-<style>.figure-prompt.md`).
+- **📛 Filename convention (strict, conflict-proof, self-describing)** — the name uses **underscores
+  only; dots are reserved for the extension**:
+  ```
+  <concept>_<intent>_<depth>_<style>_<YYYYMMDD>_<HHMM>.figure_prompt.md
+  ```
+  - `concept`: lowercase, underscore-joined (`misspelled_word`, `skill_vs_mcp`, `qtl`) — **no hyphens**.
+  - `intent`: `understand` | `produce`. `depth`: `overview` | `key` | `full`. `style`: `ppt` | `journal` | `lively`.
+  - `YYYYMMDD_HHMM`: current time — **the key to avoiding name collisions**, always include it.
+  - e.g. `misspelled_word_understand_overview_ppt_20260625_1430.figure_prompt.md`
+  - Rule: **all-lowercase, underscores only, zero hyphens**; the only dots are in the extension. One
+    filename tells you what/for-whom/how-deep/what-style/when, and repeated renders never overwrite.
 - **Hints/coordinates for the user** (focus/coverage/depth, "generate 3–4 and pick one", keep
   `fucntion` misspelled, etc.) go **in the chat reply, never in the file.**
+- **📍 By default, end the reply with the absolute path** of the prompt file (and on Codex, the
+  generated image) on the **last line**, so the user can locate/copy it directly — unless they ask
+  otherwise.
 
 ```
 <engineered English prompt: constraints block (SOURCE-LOCK + TEXT + DO NOT RENDER META)

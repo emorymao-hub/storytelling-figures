@@ -1,5 +1,18 @@
 # Changelog — storytelling-figures
 
+## v5.9 — filename convention (underscores, conflict-proof) + path on the last line + draw shared elements once
+
+- **Filename convention**: `<concept>_<intent>_<depth>_<style>_<YYYYMMDD>_<HHMM>.figure_prompt.md` —
+  all lowercase, underscores only, no hyphens; dots only in the extension; the timestamp prevents
+  collisions. e.g. `misspelled_word_understand_overview_ppt_20260625_1430.figure_prompt.md`.
+- **Path on the last line by default**: end the reply with the absolute path of the prompt file (and
+  the image on Codex) so the user can locate it.
+- **Draw a shared element once (new craft rule)**: when two paths must hit the same thing (same
+  ID/node/region), draw one shared element both paths merge into — not two copies pointing at the
+  same target (image models render those as two different targets). Real failure: a misspelling
+  figure drew both words' `gr` token twice, each wired to row #412 → the render sent them to
+  different rows.
+
 ## v5.8 — promote axis-surfacing to its own Step 2.4 (structure, since stronger wording didn't work)
 
 v5.7 made axis-surfacing a "hard-gate bullet" but GPT still only popped the ASCII direction and
