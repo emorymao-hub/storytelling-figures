@@ -153,6 +153,11 @@ you and the image model. It is a **guardrail, not a template**.
   (which metaphor, how dense, looks-like-some-paper)? **Only failure modes may become rules;
   style preferences only go into the inspiration menu.** This skill blocks weird outcomes;
   everything else is left to the image model and the user.
+- **Match the user's language.** Interact (questions, options, explanations) **in whatever language
+  the user asked in**, and **label the figure in that language too** — Chinese ask → Chinese,
+  English ask → English. **Don't default to one language just because the skill file is written in
+  it or the project defaults to it** (answering an English ask in Chinese is a failure). A clear
+  user override (e.g. "label the figure in English") wins.
 - **Cross-platform (Claude / Codex).** This file speaks in *actions*, not vendor tools: "ask
   with clickable options" (use an `AskUserQuestion`-style tool if present, otherwise list
   options as plain text), "spawn a research sub-agent / check the source" to verify. The

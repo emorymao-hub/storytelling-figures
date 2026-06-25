@@ -1,5 +1,12 @@
 # Changelog — storytelling-figures
 
+## v5.6 — match the user's language
+
+An English ask ("Help me draw a diagram…") got answered entirely in Chinese (the skill inherited a
+project default / the Chinese skill file). New rule: interact and **label the figure in the language
+the user asked in** — Chinese ask → Chinese, English ask → English; never default to one language
+just because the skill file or project is in it. A clear user override wins.
+
 ## v5.5 — don't rush to ship: gather fully, surface every axis, real brainstorm
 
 Tested failures, one root cause — the skill rushed to output instead of helping the user think it
