@@ -260,38 +260,53 @@ suspicious parts, **never invent steps/arrows the method doesn't have** for comp
 ask / leave to the user (final-text fidelity for real submission relies on a vector tool; the
 image model only delivers layout ideas).
 
-### Step 4 — pick a layout direction (nesting relationship + note, light ASCII)
+### Step 4 — pick a layout direction (ASCII wireframe + nesting relationship + note)
 
 Offer **1–3 genuinely different layout directions** to pick from (understand-it 1–2, produce-it
 2–3), then build out the chosen one. This fixes "the result didn't match what I wanted / it looks
 tacky". **Before the first figure you MUST actually surface the directions** (clickable options;
-unless the user said "you decide / just draw it").
+unless the user said "you decide / just draw it"). Each direction = three parts:
 
-Each direction = three parts, **the weight is on the last two; don't pile up ASCII**:
-1. **Positional skeleton (light ASCII, ≤4 lines):** only show "who's on top/left, where the flow
-   goes", and note **this is just a placeholder, not a style preview**. Label every shape, align
-   columns, mark flow arrows; never a bare `●`/`□`.
+1. **Layout wireframe (ASCII — make it clear and intuitive, not a throwaway)** — the face of this
+   step; show what the layout actually looks like:
+   - **Draw real bordered panels** (`┌─┐│└┘`), **sized to their real footprint** (hero big, side
+     parts small), so the proportions and positions read at a glance;
+   - **Put labels inside the panels**, never a bare `●`/`□`; **align columns** (monospace grid);
+     show flow with `→ ↓ ↘`, **draw forks/merges/convergence points**, mark the focus/hero;
+   - draw only the **layout** (who's where, how big, how connected) — **don't cram content detail
+     in** (that's what the next two parts carry); ≤10 lines.
+   - ⚠️ **The wireframe only conveys position/layout, NOT the figure's visual style** — the final
+     figure still draws each concept as a **real object** (see "anti-tacky template"); don't treat
+     the boxes as the final look.
 2. **Nesting relationship (big → small):** spell out **which piece contains which, and the reading
-   order**, with sound reasoning. E.g.:
-   ```
-   timeline
-    └ two lanes (imaging / sequencing)
-       └ 5 milestone nodes each
-          └ each node = {method name · year · one-line contribution}
-   ```
-3. **Note (one line):** "**emphasizes X more, weaker on Y**" — what this version stresses and
-   trades off, so the user **chooses by what they want to emphasize**. **The note is only for
-   choosing the direction; it does NOT go into the figure.**
+   order**, with sound reasoning. E.g. `timeline └ two lanes └ 5 nodes each └ each node {name·year·one-line}`.
+3. **Note (one line):** "**emphasizes X more, weaker on Y**" — so the user **chooses by what they
+   want to emphasize**. **The note is only for choosing the direction; it does NOT go into the figure.**
+
+A good wireframe example (a two-lane timeline, layout legible at a glance):
+```
+┌──────────────── canvas ────────────────┐
+│ 1998   2014   2016        2022   future │
+│imag ●────●─────●───────────●╮           │
+│    smFISH MERFISH        Xenium ├─▶◉fuse│
+│seq  ●───────●────●─────────●╯   (focus) │
+│     ST    Slide Stereo  VisiumHD        │
+│ └ 3 arrows sweep across: res↑ thru↑ dim↑│
+└─────────────────────────────────────────┘
+```
 
 - Directions must be **fundamentally different** (different motif / composition / emphasis), not
   tweaks of one figure.
-- 🚫 No direction may be "labeled box + arrows / stacked feature-layers" — draw the concept as a
-  **real object** (see Identity "anti-tacky template").
-- Offer with **clickable options** (use an `AskUserQuestion`-style tool if present, put the
-  positional skeleton in the `preview` to compare side by side; else plain numbered text). Always
-  keep a "**Present it the best way (you decide)**" fallback; if the user says "whatever / you
-  decide / just draw it", pick the most fitting one and build it, with a closing "say the word to
-  switch directions".
+- **🔴 How to present it (critical — don't let the card collapse to one line):** each direction's
+  **wireframe + nesting + note MUST actually be printed**. With a preview field (Claude
+  `AskUserQuestion`) → **put the wireframe in `preview`, the note in the option description**;
+  **without a preview (Codex / plain text) → print each direction's full card (wireframe + nesting
+  + note) as plain text ABOVE the numbered choices**, then list `1. dir A  2. dir B  …  you decide`
+  — **never list one-line labels that swallow the wireframe and the note** (tested failure: on
+  Codex it listed only a one-line direction and the note never showed).
+- Always keep a "**Present it the best way (you decide)**" fallback; if the user says "whatever /
+  you decide / just draw it", pick the most fitting one and build it, with a closing "say the word
+  to switch directions".
 
 ### Deck mode (a side path: a slide deck / multi-page poster / a series, not one figure)
 
