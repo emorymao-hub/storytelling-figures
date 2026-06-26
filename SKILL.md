@@ -48,7 +48,10 @@ you and the image model. It is a **guardrail, not a template**.
 - **Read the tone, adapt how many you ask.** Before each prompt, infer the user's **expertise
   level** and how clear their ask is from **how they talk** (word choice, tone). **Distinctive
   signals (clearly an expert / clearly a layperson / very specific ask) → ask less or not at all;
-  vague / unreadable → treat as unclear and ask.** *Explain-to-understand-it-yourself*: **1–3
+  vague / unreadable → treat as unclear and ask.** (⚠️ **"ask less" ≠ skip the three hard gates** —
+  knowledge points / package / layout are presentation choices; "ask less" means a *faster confirm*
+  with your inferred answer as option #1, not deciding for them; only an explicit user "you decide /
+  just draw it" actually skips them.) *Explain-to-understand-it-yourself*: **1–3
   questions**, fast, don't tire a confused person. *Explain-to-teach-others / produce*: **ask more,
   heuristically** — step the user toward the form they want.
 - **Always options, never an interrogation; always leave an open slot.** Every question is a set
@@ -196,6 +199,16 @@ register**, not a mold.
 ---
 
 ## Workflow: harvest → pick knowledge points → pick package → pick layout → prompt engineering
+
+> 🛑 **"The content is clear" does NOT license skipping the choice gates.** Steps 2/3/4 decide
+> **presentation** (which knowledge points to feature, which package, which layout) — **these stay
+> the user's choice even when the content is 100% clear**. **Never self-authorize "it's obviously
+> detailed, I'll just generate"** (tested failure: on Codex it picked the "detailed teaching figure"
+> package and generated with no options offered). **The ONLY thing that skips them is the user
+> explicitly saying "you decide / just draw it / stop asking"** — the user's words, not your
+> judgment that the ask is clear. Handing composition to the model (Step 5) is a separate matter —
+> don't conflate: **presentation choices belong to the user, composition belongs to the model;
+> neither is yours (the agent) to silently decide.**
 
 ### Step 1 — catch + harvest (first thing on being summoned)
 
