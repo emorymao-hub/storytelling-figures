@@ -114,8 +114,8 @@ you and the image model. It is a **guardrail, not a template**.
 - **The "remove-the-labels" test (the hard ruler for tacky).** Cover each element's text label —
   **can you still tell what it is?** If not (just a generic icon / empty box doing nothing, with the
   word carrying all the meaning) = decoration, **fails**. Each element must **depict its real
-  content/structure** so it reads even with labels removed (good examples: draw "direction choice"
-  as a few real ASCII sketch rows; "scoring" as real score bars; "a fork" as real arrows converging
+  content/structure** so it reads even with labels removed (good examples: draw "scoring" as real
+  score bars; "attention" as a real little heatmap; "a fork" as real arrows converging
   / diverging). Two corollaries: ① **don't use "icon + one word" throughout** — it's monotone and
   hollow; an icon-plus-caption is fine occasionally, not for the whole figure; ② **draw flow/forks
   as clean arrows, never as a machine metaphor** (no railway tracks, gears, machines — too
@@ -260,53 +260,30 @@ suspicious parts, **never invent steps/arrows the method doesn't have** for comp
 ask / leave to the user (final-text fidelity for real submission relies on a vector tool; the
 image model only delivers layout ideas).
 
-### Step 4 — pick a layout direction (ASCII wireframe + nesting relationship + note)
+### Step 4 — pick a layout direction (described in words, no ASCII)
 
 Offer **1–3 genuinely different layout directions** to pick from (understand-it 1–2, produce-it
-2–3), then build out the chosen one. This fixes "the result didn't match what I wanted / it looks
-tacky". **Before the first figure you MUST actually surface the directions** (clickable options;
-unless the user said "you decide / just draw it"). Each direction = three parts:
-
-1. **Layout wireframe (ASCII — make it clear and intuitive, not a throwaway)** — the face of this
-   step; show what the layout actually looks like:
-   - **Draw real bordered panels** (`┌─┐│└┘`), **sized to their real footprint** (hero big, side
-     parts small), so the proportions and positions read at a glance;
-   - **Put labels inside the panels**, never a bare `●`/`□`; **align columns** (monospace grid);
-     show flow with `→ ↓ ↘`, **draw forks/merges/convergence points**, mark the focus/hero;
-   - draw only the **layout** (who's where, how big, how connected) — **don't cram content detail
-     in** (that's what the next two parts carry); ≤10 lines.
-   - ⚠️ **The wireframe only conveys position/layout, NOT the figure's visual style** — the final
-     figure still draws each concept as a **real object** (see "anti-tacky template"); don't treat
-     the boxes as the final look.
-2. **Nesting relationship (big → small):** spell out **which piece contains which, and the reading
-   order**, with sound reasoning. E.g. `timeline └ two lanes └ 5 nodes each └ each node {name·year·one-line}`.
+2–3). **Before the first figure you MUST actually surface the directions** (clickable options;
+unless the user said "you decide / just draw it").
+**No ASCII** — a wireframe is low-fidelity, drags everything toward a boxy look, and gets
+transcribed into the prompt where it strangles composition (tested: forcing a layout came out
+*worse* than free-form). Describe each direction in **words**, three lines:
+1. **Layout archetype (one line):** a common layout name + how it's arranged overall. E.g. "clean
+   4-panel A/B/C/D, left→right", "two-lane timeline converging on the right", "funnel: many inputs
+   collapse to one focus". **For a standard mechanism figure, a conventional layout (panels /
+   left→right) is often the best answer — don't force novelty.**
+2. **Nesting relationship (big → small):** which piece contains which, and the reading order. E.g.
+   `timeline └ two lanes └ 5 nodes each └ each node {name·year·one-line}`.
 3. **Note (one line):** "**emphasizes X more, weaker on Y**" — so the user **chooses by what they
    want to emphasize**. **The note is only for choosing the direction; it does NOT go into the figure.**
 
-A good wireframe example (a two-lane timeline, layout legible at a glance):
-```
-┌──────────────── canvas ────────────────┐
-│ 1998   2014   2016        2022   future │
-│imag ●────●─────●───────────●╮           │
-│    smFISH MERFISH        Xenium ├─▶◉fuse│
-│seq  ●───────●────●─────────●╯   (focus) │
-│     ST    Slide Stereo  VisiumHD        │
-│ └ 3 arrows sweep across: res↑ thru↑ dim↑│
-└─────────────────────────────────────────┘
-```
-
-- Directions must be **fundamentally different** (different motif / composition / emphasis), not
-  tweaks of one figure.
-- **🔴 How to present it (critical — don't let the card collapse to one line):** each direction's
-  **wireframe + nesting + note MUST actually be printed**. With a preview field (Claude
-  `AskUserQuestion`) → **put the wireframe in `preview`, the note in the option description**;
-  **without a preview (Codex / plain text) → print each direction's full card (wireframe + nesting
-  + note) as plain text ABOVE the numbered choices**, then list `1. dir A  2. dir B  …  you decide`
-  — **never list one-line labels that swallow the wireframe and the note** (tested failure: on
-  Codex it listed only a one-line direction and the note never showed).
-- Always keep a "**Present it the best way (you decide)**" fallback; if the user says "whatever /
-  you decide / just draw it", pick the most fitting one and build it, with a closing "say the word
-  to switch directions".
+- Directions must be **fundamentally different** (different archetype / composition / emphasis),
+  not tweaks of one figure.
+- **Platform fallback:** with `AskUserQuestion`, put the **nesting + note in the option
+  description**; without it, **print each direction's card (archetype + nesting + note) as plain
+  text**, then list `1. A  2. B  …  you decide`. Always keep a "**Present it the best way (you
+  decide)**" fallback; if the user says "whatever / you decide / just draw it", pick the most
+  fitting one and build it, with a closing "say the word to switch directions".
 
 ### Deck mode (a side path: a slide deck / multi-page poster / a series, not one figure)
 
@@ -416,7 +393,16 @@ whitespace ≤20% with every region exposing its internals):
      most one or two more negatives only if directly relevant to this figure.
    ```
 
-6. **Close with an imperative**: "Generate a publication-quality figure, complete in one image
+6. **🔴 Don't over-direct the layout, don't force a gimmick (hand composition back to the model).**
+   Give the model **content map + guardrails + one line of archetype steer** — then **leave the
+   arrangement / proportions / exact composition to it** ("clean professional schematic, compose &
+   scale freely"); don't dictate box positions. Tested: forcing a layout came out **worse than
+   free-form**. **For a standard mechanism figure, a conventional layout (panels / left→right) is
+   the default** — differentiation comes only from **real primitives + correct content**, **never
+   a machine / seesaw / metaphor gimmick** (that's the banned anthropomorphism — see formality /
+   anti-tacky). At this step the skill is a **guardrail, not an art director.**
+
+7. **Close with an imperative**: "Generate a publication-quality figure, complete in one image
    (every label rendered), meeting all the guidelines above."
 
 ### Cold-start fallback (rare: "just draw me an X" with no prior conversation to harvest)
@@ -546,15 +532,18 @@ commentary mixed in (anything in the body gets copied with the prompt and pollut
    appearing from nowhere? **Is every line/arrow/dashed curve anchored to a named element at
    both ends** — any **dangling line** (a dashed curve into a point whose other end has no
    origin, so it can't be explained)?
-9. **Formal enough?** Did an abstract mechanism get rendered as a glowing/glass/toy machine, or
-   over-cartooned/dramatic? Default should read like a real lab-meeting / PPT / method figure.
+9. **Formal enough / not over-directed?** Did an abstract mechanism get rendered as a
+   glowing/glass/toy machine, a **seesaw/balance metaphor gimmick**, or over-cartooned/dramatic?
+   **Did the prompt over-prescribe the layout (composition should be handed to the model), or force
+   a gimmick framing just to differentiate (a standard mechanism figure wants a conventional
+   layout)?** Default should read like a real lab-meeting / PPT / method figure.
 10. **Anti-tacky?** Did it degrade back into "boxes/squares + arrows / stacked feature-layers"? Is
     each concept drawn as a **real object** (not a labeled box)? Box-flow / tacky → **fails,
     rewrite.**
 11. **All three choice gates run? (hard gate)** Before the first figure, were these **actually
     surfaced as clickable options**: ① **knowledge points ≤5** (user picks what to emphasize, not
     defaulted) ② **package** (sci-comm / PPT / detailed / journal, sets how full) ③ **1–3 layout
-    directions** (each with a positional skeleton + nesting relationship + one note)? Skipping the
+    directions** (each = archetype + nesting relationship + one note, **no ASCII**)? Skipping the
     knowledge-points step, or quietly producing a figure = failure (unless the user said "you
     decide / just draw it").
 12. **Color harmony?** One coherent register? Any jarring clash (a dark-green block in a cool
