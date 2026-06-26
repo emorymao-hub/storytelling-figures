@@ -36,7 +36,7 @@ git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.codex/skil
 Start a new session — it auto-discovers and triggers on intent. **For a Chinese-language skill body,** rename `SKILL.zh.md` to `SKILL.md`.
 
 ### How to use it
-Don't invoke it by hand. Talk through a concept, then say *"draw what we just discussed"* / *"this is too confusing, draw it so I get it"* / *"I need a journal method figure, give me layout ideas."* It harvests the chat, splits by intent (understand-it vs produce-it), brainstorms 2–3 visual directions (each with an ASCII sketch) for you to pick, then engineers the prompt.
+Don't invoke it by hand. Talk through a concept, then say *"draw what we just discussed"* / *"this is too confusing, draw it so I get it"* / *"I need a journal method figure, give me layout ideas."* It harvests the chat, brainstorms the candidate knowledge points and asks which to feature (≤5), then a package (sci-comm / PPT / detailed / journal) and 1–3 layout directions to pick from, then engineers the prompt.
 
 **Output by platform:** on **Claude** you get one `figure-prompt.md` to paste into the image model. On **Codex** with a native text-to-image tool, you get the prompt **and** the image together. Neither hand-codes SVG/PNG.
 
@@ -83,7 +83,7 @@ git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.codex/skil
 新开会话即自动发现、按意图触发。**想用中文版规则**：把 `SKILL.zh.md` 改名成 `SKILL.md` 即可。
 
 ### 怎么用
-不用手动调。聊透一个概念后随口说 *"把刚才这个画成图"* / *"太复杂了画出来理一理"* / *"我要画张 journal 方法图，给点布局灵感"*。它会收割对话、辨意图（理解型 / 产出型）、brainstorm 2–3 个带 ASCII 示意图的方向让你挑，再工程化出 prompt。
+不用手动调。聊透一个概念后随口说 *"把刚才这个画成图"* / *"太复杂了画出来理一理"* / *"我要画张 journal 方法图，给点布局灵感"*。它会收割对话、脑暴出可选知识点让你勾（≤5），再选套餐（科普 / PPT / 详细 / journal）和 1–3 个布局方向，最后工程化出 prompt。
 
 **按平台交付**：**Claude** 端给你一个 `figure-prompt.md` 粘去出图；**Codex** 端若有原生文生图，prompt + 图一起给。两端都不手搓 SVG/PNG。
 

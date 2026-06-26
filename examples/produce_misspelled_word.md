@@ -10,8 +10,8 @@
 ### What the skill does here
 - **Doesn't re-teach** you the mechanism (you clearly know it) — it does a light consistency check
   and takes the nodes from your own words.
-- **Produce-it path**: **diverges** — surfaces choices (focus / coverage / depth / style) and a
-  direction brainstorm (2–3 ASCII-sketched layouts) for you to pick, then engineers the prompt.
+- **Produce-it path**: **diverges** — brainstorms the knowledge points to feature (≤5), then a
+  package (here: detailed) and 2–3 layout directions for you to pick, then engineers the prompt.
 - Keeps the misspelling intentionally wrong, draws real objects, anchors every line, and makes the
   latent-space transformation the focal point.
 

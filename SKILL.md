@@ -59,8 +59,8 @@ you and the image model. It is a **guardrail, not a template**.
   prompt, make sure **the user has finished telling you what the figure should express** — for
   produce/explain figures, **ask/confirm "what else do you want in it?"** (the emphasis, the
   contrast, the examples, the sub-blocks) before generating. **If you still have a real blank about
-  *what this figure must say*, or the user is still adding, keep gathering — do NOT move to Step
-  2.5 / output.** Rushing out a prompt on half the information is the most common, most annoying
+  *what this figure must say*, or the user is still adding, keep gathering — do NOT move to package
+  selection / output.** Rushing out a prompt on half the information is the most common, most annoying
   failure; confirm one more round rather than ship on partial input.
 - **Context first — don't re-ask what's already known.** Before asking anything, check what the
   conversation already settled: the platform, whether they're making a PPT, the purpose, a focus
@@ -195,220 +195,133 @@ register**, not a mold.
 
 ---
 
-## Workflow: detect intent → two paths → prompt engineering
+## Workflow: harvest → pick knowledge points → pick package → pick layout → prompt engineering
 
-### Step 1 — catch + harvest + detect intent (first thing on being summoned)
+### Step 1 — catch + harvest (first thing on being summoned)
 
 You're most likely summoned after an existing conversation. **Don't start a questionnaire.**
 Do two things:
 
-1. **Harvest the conversation** into a "content map": what the user **asked about repeatedly**
-   = their focus; how **deep** it went = their depth. Most of this is already in the chat —
-   just take it.
-   - At the same time build a **visible-content allow-list**: `words/entities allowed to draw`,
-     `conversational background terms forbidden`, `uncertain words to ask/verify`. E.g. if the
-     user only asked to explain `fucntion -> function`, the allow-list holds only `fucntion`,
-     `function`, and the relevant mechanism terms; a word that merely referred to "the model"
-     in passing must not become "model direction" or `logit(model)`.
-2. **Detect intent** (decides the whole path):
+1. **Harvest the conversation** into a "content map", and build a **visible-content allow-list**
+   (`words/entities allowed to draw` / `conversational background terms forbidden` / `uncertain
+   words to ask/verify`). E.g. if the user only asked to explain `fucntion -> function`, the
+   allow-list holds only `fucntion`, `function`, and the relevant mechanism terms; a word that
+   merely referred to "the model" in passing must not become "model direction" or `logit(model)`.
+2. **Lightly detect intent (sets converge vs diverge — don't open with a pile of questions):**
+   - **Understand-it** ("too hard, draw it so I get it"; "I learned it, need to explain it to my
+     lab") → the later layout step **converges** to 1–2 directions, fewer questions.
+   - **Produce-it** ("a figure for slides"; "draw a journal method figure"; "give me layout
+     ideas") → the layout step **diverges** into 2–3 directions.
+   - If unsure, ask intent in one line.
 
-| | **Understand-it** | **Produce-it** |
-|---|---|---|
-| Signals | "too hard, draw it so I get it"; "I learned it, need to explain it to my advisor / lab" | "I need a figure for slides"; "I designed a method, draw a journal figure"; "give me layout ideas" |
-| What they want | **Clarity** (get it themselves / explain to others) | **Beauty + design ideas** (goes straight into a deliverable) |
-| Where content comes from | grew out of the chat, **maybe still stuck/incomplete** | **their own, complete, they know it better than you** |
+### Step 2 — brainstorm knowledge points → pick ≤5 (🛑 hard gate ①, the most-skipped step)
 
-> If unsure, **ask intent in one line** ("Do you want to first understand it, or do you already
-> get it and want a figure with layout ideas?") — not a triple questionnaire.
+The moment you're summoned, **brainstorm immediately**: lay out **all the candidate knowledge
+points / sub-topics** in the content, and ask the user with **clickable options (keep it to 5 or
+fewer)** "which of these should the figure emphasize?". Their picks lock down **what goes in the
+figure**.
+- **Never skip this, never default the focus for them.** Skipping it and jumping straight to form
+  is the most common failure.
+- Options are **enumerated at runtime from the conversation** (not hardcoded); multi-select is
+  fine, but flag that **one figure is best with ≤3–4 knowledge points** (more = garble).
+- Always keep an "**all of them / you decide**" fallback. Platform fallback: a clickable tool if
+  present, else plain numbered text (`1. … 2. … 6. you decide`).
 
-### Step 2A — understand-it: fill content → converge to one clear figure
+### Step 3 — pick a package (🛑 hard gate ②: four packages, one choice setting "how full + how it looks")
 
-- **Content**: mostly harvested; **fill/verify the part they got stuck on** — this is where
-  content-first research is most valuable (don't let the figure paper over what they didn't
-  grasp). For implementation depth, use the **Deep-dive gate** below.
-- **One message**: the **core point that resolves the confusion** (a few sentences ok; each is
-  a verb-bearing conclusion, not a topic).
-- **🔴 Axis gate: focus / depth / style MUST be surfaced as options (same tier as the direction
-  choice, not a suggestion).** Before output, **always present these axes** (your inferred answer as
-  #1); **never decide them silently.**
-  - **The direction choice (the Step 2.5 ASCII pick) does NOT replace surfacing the axes** — offering
-    only the direction while silently fixing focus/depth/style = **failure** (real case: on GPT it
-    only popped the ASCII direction and skipped all the axes). **Surface both.**
-  - **Platform fallback (critical):** use a clickable-option tool if available; **if not, list the
-    options as plain numbered text** (`1. … 2. … 3. … 4. your own`) — **do not skip asking just
-    because you can't render fancy cards.** Every platform (Claude / Codex / other) must surface them.
-  - Understand-it may **bundle into one or two quick screens** (focus+depth on one, style on another);
-    only collapse to "direction only" when the user clearly signals "I'm lost / keep it simple / you
-    decide."
-- **Style**: default `ppt` (clean, clear, whitespace, professional — can be polished and
-  colorful, but **no cartoon, no glow, no mascots**). For deep/complex content dial toward
-  `journal` (a denser method figure); **density follows clarity — if mid-density explains it,
-  don't make it full-bleed** (ppt<->journal is a continuous knob, don't agonize over a tier).
-  Use `lively` only when the user explicitly wants an outreach/cover vibe.
-- **Stance = converge**: aim for **one figure you get at a glance**. Still run Step 2.5 for that
-  *one* direction choice, but don't pile on extra questionnaires for someone already confused.
+Collapse the old separate depth / style / coverage axes into **one "package" choice** — the user
+picks a **destination** and the sensible defaults for each axis come bundled. Keep an "other /
+describe your own" escape hatch.
 
-### Step 2B — produce-it: take their content → diverge into layout ideas
+| Package | For whom / what | Whitespace | Minimum elements | Internal detail | One-line goal |
+|---|---|---|---|---|---|
+| **Sci-comm** | laypeople / poster | 45–60% (airy) | 1 hero object + 2–4 labels + 1 main line + 1 caption | hero drawn figuratively, rest kept simple | get one concept in 3 seconds |
+| **PPT** | a talk slide | 25–40% | 3–6 main parts, each with a sub-title + 1–2 lines + a clear main flow | each part a real object with internal structure, not maxed | follow along while you talk |
+| **Detailed** | a dense teaching / self-study explainer | **≤20%, whitespace = not finished** | **≥6–10 content-bearing regions**, each with sub-structure/sub-steps | **every concept exposes its inner mechanism** (e.g. attention drawn down to QKV / softmax bars / residual add), no empty boxes | self-readable without narration |
+| **Journal-figure ideas** | a paper-submission figure | ≤20%, restrained | panels a/b/c + legend + caption, full publication conventions | each panel uses real primitives, exposes mechanism, restrained palette (e.g. Okabe-Ito) | reviewer-grade, **and offers 2–3 layout ideas to pick from** |
 
-- **Content**: theirs — **don't re-teach, don't re-research** (they know it better). But run a
-  **light consistency check** — if you spot a clear contradiction, a suspicious point, or a key
-  deep mechanism, **verify / flag it**; don't draw something wrong.
-- **Style**: default `ppt` (sparse, projection-ready) or `journal` (dense, submission/method
-  figure).
-- **Stance = diverge, but read the ask:**
-  - They explicitly say "give me **ideas / options / a few layouts**" → offer **2–3 layout
-    archetypes / signature directions** (one line each + an optional ASCII sketch) to pick from,
-    then build the chosen one out.
-  - They say "**just draw it / turn the above into a figure**" → **don't stop to make them
-    choose**: pick the most fitting default layout and **write the prompt directly**, with a
-    closing line "say the word if you want a different layout". **One fewer round-trip > one more
-    choice.**
-- focus / depth are usually clear to them; follow what they give.
+**Three hard rules (to fix "detailed isn't detailed enough"):**
+1. **Detailed / journal: whitespace ≤20%, treat whitespace as a defect signal** — see blank, keep filling.
+2. **Detailed / journal: every region must expose internal structure; no empty boxes / bare labeled squares.**
+3. **Give each package by its "minimum element count" floor** (a countable floor) to block laziness.
+> But **clarity > completeness(floor) > density**: even the detailed package must stay **strictly
+> legible**, never garbled; don't densify just to "look like Figure 1".
+> One-line distinction **Detailed vs Journal**: Detailed = a maximally dense *explainer* (free in
+> style, may use color/metaphor); Journal = a *paper figure* bound by publication conventions
+> (restrained, paneled, plus extra composition ideas).
 
-**🧭 Produce-it thinking chain (a process system — not making aesthetic decisions for the user)**
-We can't give scene-specific drawing advice for arbitrary figures, but we can give a process of
-**asking the right questions**: each step is a **clickable choice**, each maps to exactly one
-downstream decision, each lets the user defer with "you decide". **Options are generated at
-runtime from the user's own content** (except Q1, which is fixed) — never hardcoded. Understand-it
-runs a trimmed version (≤3 questions; focus is usually already harvested, so jump to Q3 / Step
-2.5); produce-it runs the full chain:
+**The journal package's "three guarantees"** (most likely to go wrong in formal figures):
+① **guarantee difference** — differentiate via "layout from the method's own structure + real
+primitives + semantic color (one per modality) + signature = the real focus", and in the prompt
+explicitly avoid image-model cliches (gradient box-flow / glowing nodes / fake 3D chrome);
+② **guarantee correctness** — elements from the content map or the user's own words, verify
+suspicious parts, **never invent steps/arrows the method doesn't have** for composition;
+③ **guarantee no-fabrication** — labels verbatim from real terminology, never invented; if unsure
+ask / leave to the user (final-text fidelity for real submission relies on a vector tool; the
+image model only delivers layout ideas).
 
-```
-Q1 What's this figure for?      ──▶ sets style family + density
-   Fixed options: "Paper figure" (→ journal, dense) / "PPT / talk" (→ ppt, sparse, 16:9) /
-   "Sci-comm poster" (→ lively); plus free-text (the clickable tool's Other field).
-Q2 What to emphasize?           ──▶ sets focus + signature
-   Options ENUMERATED at runtime from the user's pipeline nodes: emphasize <core/novel module> /
-   <input·data> / <output·result> / spread evenly + "you decide".
-Q3 How much content to cover?   ──▶ sets coverage (→ density follows; never ask "how dense")
-   Just the core / core + key supporting / comprehensive (more branches + detail) + "you decide".
-Q4 How deep to emphasize?       ──▶ sets depth
-   Overview (big-picture, no formulas) / Key mechanism (how the core works, no low-level) /
-   Full implementation (formulas · dimensions · boundary conditions) + "you decide".
- → Step 2.5 direction choice (2–3 visual directions, each with an ASCII sketch — pick one)
- → Step 3 prompt engineering
-```
-> **Information density = coverage × depth — don't ask "how dense" (the user can't judge that),
-> ask "how much content to cover" (which they can).** More coverage + more depth → more density,
-> as a result. For explain-to-teach, run these as heuristic clickable steps with a "your own" slot;
-> for explain-to-understand, trim to 1–3 questions by tone.
-> Each question swaps exactly one decision (Q1→register, Q2→focus, Q3→depth), so "produce-it may
-> ask more" is a **chain that converges**, not loose chit-chat. The user can bail with "you decide
-> / just draw it" at any point and you pick the best. These are **presentation questions, not
-> content questions** — don't use them to re-teach the method they know better than you.
+### Step 4 — pick a layout direction (nesting relationship + note, light ASCII)
 
-**Produce-it · journal "three guarantees" (the three things most likely to go wrong in formal
-figures — handle as one step)**
-- **Guarantee difference**: a formal figure **can't differentiate via robots/glow/metaphor**.
-  Only four legit levers — (1) pick the layout from **this method's own structure** (two-lane /
-  radial / nested …, not a default "left-to-right box flow"); (2) use **this method's real
-  primitives** (real samples, real molecules, real data structures — inherently unique);
-  (3) semantic color **bound to method parts** (one color per modality); (4) signature = the
-  method's **real visual focus** (the fusion point / fork / bottleneck). And in the prompt
-  **explicitly avoid the AI sci-infographic cliches**: generic gradient box-flow, glowing nodes,
-  fake 3D chrome, neon outlines.
-- **Guarantee correctness**: elements and structure **from the content map or the user's own
-  words**; light consistency check, verify suspicious/deep parts; **never invent steps/arrows
-  the method doesn't have** just for composition.
-- **Guarantee no-fabrication**: labels **verbatim from real terminology, never invent/approximate
-  spelling**; if unsure, **ask or leave it to the user** — don't let the image model bluff;
-  minimize labels (fewer = less garble, fewer errors). **Honest positioning**: final-text
-  fidelity for real submission does **not** rely on the image model — it delivers **layout /
-  composition ideas**; treat rendered text as placeholder and finalize real labels in a vector
-  tool.
+Offer **1–3 genuinely different layout directions** to pick from (understand-it 1–2, produce-it
+2–3), then build out the chosen one. This fixes "the result didn't match what I wanted / it looks
+tacky". **Before the first figure you MUST actually surface the directions** (clickable options;
+unless the user said "you decide / just draw it").
 
-### Step 2.4 — surface the axes: focus / depth / style (**hard gate ①, must actually be shown**)
+Each direction = three parts, **the weight is on the last two; don't pile up ASCII**:
+1. **Positional skeleton (light ASCII, ≤4 lines):** only show "who's on top/left, where the flow
+   goes", and note **this is just a placeholder, not a style preview**. Label every shape, align
+   columns, mark flow arrows; never a bare `●`/`□`.
+2. **Nesting relationship (big → small):** spell out **which piece contains which, and the reading
+   order**, with sound reasoning. E.g.:
+   ```
+   timeline
+    └ two lanes (imaging / sequencing)
+       └ 5 milestone nodes each
+          └ each node = {method name · year · one-line contribution}
+   ```
+3. **Note (one line):** "**emphasizes X more, weaker on Y**" — what this version stresses and
+   trades off, so the user **chooses by what they want to emphasize**. **The note is only for
+   choosing the direction; it does NOT go into the figure.**
 
-**The first choice gate before any output.** Present these axes **as options** (your inferred answer
-as #1, plus a "your own" slot) and wait for the pick before continuing:
-- **focus** — which part the figure emphasizes (options drawn from the content).
-- **depth** — how deep (overview / key mechanism / full implementation); mandatory for mechanism/method figures.
-- **style** — the register (default ppt; ask about journal/lively unless obvious).
-- **coverage** (for content-heavy figures) — how much to cover (just core / core + key support / comprehensive) → sets density.
+- Directions must be **fundamentally different** (different motif / composition / emphasis), not
+  tweaks of one figure.
+- 🚫 No direction may be "labeled box + arrows / stacked feature-layers" — draw the concept as a
+  **real object** (see Identity "anti-tacky template").
+- Offer with **clickable options** (use an `AskUserQuestion`-style tool if present, put the
+  positional skeleton in the `preview` to compare side by side; else plain numbered text). Always
+  keep a "**Present it the best way (you decide)**" fallback; if the user says "whatever / you
+  decide / just draw it", pick the most fitting one and build it, with a closing "say the word to
+  switch directions".
 
-> 🔴 **This is a hard gate at the same tier as Step 2.5 — do BOTH.** Popping only the direction
-> (Step 2.5) while silently fixing focus/depth/style = **failure** (real case: GPT only popped the
-> ASCII direction and skipped this step).
-> **Platform fallback:** use a clickable-option tool if present; **otherwise list the options as plain
-> numbered text** (`1. … 2. … 3. … 4. your own`) — don't skip asking because you can't render cards.
-> Understand-it may bundle into one or two screens, but **never skip every axis**; only collapse to
-> "Step 2.5 only" when the user clearly signals "I'm lost / keep it simple / you decide."
-
-### Step 2.5 — direction brainstorm (the big choice, **hard gate ②, on by default**)
-
-Before drawing, give the user **one high-leverage choice**: brainstorm **2–3 genuinely different
-visual directions** to pick from, then build out the chosen one. This step fixes "the result
-didn't match what I wanted / it looks tacky".
-> **This is a hard gate, not a suggestion: before the first figure you MUST actually surface the
-> 2–3 directions as clickable options and wait for a pick before writing the prompt.** Quietly
-> producing a figure with no choice ever offered = failure (unless the user said "you decide /
-> just draw it"). In practice this step is the most commonly skipped — don't skip it.
-- **This is a real brainstorm — not three skeletal ASCII lines.** Each direction must be something
-  the user can genuinely evaluate and choose between, with at least: ① **one sentence on the core
-  presentation approach** (which real object/metaphor carries the concept, the overall composition,
-  the signature, what it emphasizes); ② **a line or two on "why it fits / how it differs from the
-  others"**; ③ **a legible** ASCII sketch (a supplement, not decoration). **Directions must be
-  fundamentally different** (different motif / composition / emphasis) — genuinely distinct design
-  concepts, not tweaks of one figure. **Don't let a crude ASCII stand in for a real description of
-  the direction.**
-  > **🎨 ASCII sketch craft (an unreadable sketch is worse than none — it MUST be legible):**
-  > ① **Label every shape with a short word; never leave a bare `●`/`□`** — a bare shape means
-  >    nothing.
-  > ② **Align columns** (monospace grid); show flow with `→ ↓ ↘`; draw forks/merges explicitly.
-  > ③ Consistent shape semantics: `[ ]`=module/panel, `( )`=station/node, `●`=data point,
-  >    `▢`=vector, `═/─`=track/connector.
-  > ④ **Show only this direction's distinguishing idea (its signature)**, not every detail — a
-  >    sketch is not the final figure; keep it ≤6 lines.
-  > ⑤ **One plain-language note underneath** stating the selling point / how it differs from the
-  >    others.
-  > Bad (illegible): `● ──▶ ●   ● ──▶ ●` (bare dots, unknown meaning, no note).
-  > Good:
-  > ```
-  > top   noisy-in  ─▶[②attn+MLP]─▶ ●H_L(noisy)   ┐
-  > bottom clean-in  ─▶[②attn+MLP]─▶ ●H_L(clean)  ┘→ same semantic region
-  > selling point: each dot is its own track's terminus; origin = its colored track; no dangling line
-  > ```
-- Offer it with **clickable options** (use an `AskUserQuestion`-style tool if present, else plain
-  text). **If the tool has a preview field, put the ASCII sketch in the preview** so the directions
-  compare side by side.
-- **Understand-it gets this too, but just this one choice** — don't turn it back into a
-  questionnaire; produce-it is already divergent, so this fits naturally.
-- No direction may be the "labeled box + arrows / stacked feature-layers" style (see
-  "anti-tacky template") — offer genuinely modern directions that draw the concept as a **real
-  object**.
-- **Always include a fallback option "Present it the best way (I'm not sure — you decide)"**:
-  lets a user who can't follow or doesn't want to choose hand it to you.
-- If the user says "whatever / you decide / just draw it" or picks the fallback, pick the most
-  fitting direction and build it, with a closing "say the word to switch directions".
-
-### Step 2.6 — Deck mode (a set of figures: a slide deck / multi-page poster / a series, not one figure)
+### Deck mode (a side path: a slide deck / multi-page poster / a series, not one figure)
 
 When the task is a SET of figures, don't run the single-figure flow N times (that becomes dozens
 of questions). Instead: **set defaults once + per figure only ask what varies**:
 - **Deck-level defaults, set once at the start, never re-asked:** intent (e.g. making a PPT =
-  produce-it), style family + density, and a house style (the unifying visual thread that keeps N
-  pages one family). **If these are already known, don't ask them per page.**
-- **Per page, only run "what actually changes here":** focus / depth / direction (Step 2.5).
-- **Simple pages** (cover / background / closing): focus and depth are near-default → **state your
-  inferred values for a quick yes/no** ("focus = balanced, depth = overview — ok?"), don't
-  interrogate; often the only real choice is the layout direction.
-- **Content-heavy pages** (mechanism / method-design / complex case): focus, and **especially
-  depth, are real decisions** → see "depth is a required choice" below; surface them as clickable
-  options.
+  produce-it), package + house style (the unifying visual thread that keeps N pages one family).
+  **If these are already known, don't ask them per page.**
+- **Per page, only run "what actually changes here":** knowledge points (Step 2) / package (Step
+  3) / layout direction (Step 4).
+- **Simple pages** (cover / background / closing): knowledge points and package are near-default →
+  **state your inferred values for a quick yes/no** ("just one core point, PPT package — ok?"),
+  don't interrogate; often the only real choice is the layout direction.
+- **Content-heavy pages** (mechanism / method-design / complex case): knowledge points, and
+  **especially the package, are real decisions** → surface them as clickable options, never decide
+  silently.
 - Carry the deck defaults across pages; only hand the user the incremental question. Goal: an
-  N-page deck ≈ 0–1 real question per page + one direction choice, not 4N questionnaires.
+  N-page deck ≈ 0–1 real question per page + one layout choice, not 4N questionnaires.
 
-> **Depth is a required choice on content-heavy figures (hard).** For any figure explaining a
-> **mechanism / method / implementation**, **depth MUST be surfaced as a clickable choice** (e.g.
-> `Overview (big picture, no formulas) / Key mechanism (how the core works) / Full implementation
-> (formulas, dimensions, boundaries)`, with your inferred level as option #1). **Never silently
-> decide depth** — it directly sets how deep the figure goes and is the knob the user most needs
-> to own. Same for focus: if inferable, confirm with "inferred = option #1", but **don't silently
-> skip it**.
+> **Both hard gates still run on content-heavy figures.** For any page explaining a **mechanism /
+> method / implementation**, **knowledge points (Step 2) and package (Step 3) MUST be surfaced as
+> clickable choices** (your inferred answer as option #1). **Never silently decide them** — which
+> knowledge points and which package directly set what the page draws and how deep/full it goes,
+> the knobs the user most needs to own.
 
-### Step 3 — prompt engineering → figure-prompt.md (both paths converge here)
+### Step 5 — prompt engineering → figure-prompt.md
 
-Assemble the prompt in this order — **constraints first → subject second → imperative close**:
+Assemble the prompt in this order — **constraints first → subject second → imperative close**
+(the **density anchor comes from the package picked in Step 3**: sci-comm airy; detailed/journal
+whitespace ≤20% with every region exposing its internals):
 
 1. **Inject the two hard constraints (always, in full):**
 
@@ -496,10 +409,10 @@ Assemble the prompt in this order — **constraints first → subject second →
 Only when there's nothing to harvest, run the full classic flow:
 1. **Work out the answer yourself first**: get the concept's real mechanism right and complete,
    produce a content map.
-2. **Lock the one message** → ask `focus` (multi-select, detail distribution) / `depth`
-   (single) / `style` (single) with clickable options, all in plain language (a smart-but-outside
-   reader must understand each option; jargon stays in your head).
-3. Proceed to Step 3.
+2. **Run Step 2→3→4**: with clickable options, ask **knowledge points (≤5) → package → layout
+   direction**, all in plain language (a smart-but-outside reader must understand each option;
+   jargon stays in your head).
+3. Proceed to Step 5.
 
 ---
 
@@ -576,14 +489,14 @@ commentary mixed in (anything in the body gets copied with the prompt and pollut
 - **📛 Filename convention (strict, conflict-proof, self-describing)** — the name uses **underscores
   only; dots are reserved for the extension**:
   ```
-  <concept>_<intent>_<depth>_<style>_<YYYYMMDD>_<HHMM>.figure_prompt.md
+  <concept>_<intent>_<package>_<YYYYMMDD>_<HHMM>.figure_prompt.md
   ```
   - `concept`: lowercase, underscore-joined (`misspelled_word`, `skill_vs_mcp`, `qtl`) — **no hyphens**.
-  - `intent`: `understand` | `produce`. `depth`: `overview` | `key` | `full`. `style`: `ppt` | `journal` | `lively`.
+  - `intent`: `understand` | `produce`. `package` (the Step 3 package): `scicomm` | `ppt` | `detailed` | `journal`.
   - `YYYYMMDD_HHMM`: current time — **the key to avoiding name collisions**, always include it.
-  - e.g. `misspelled_word_understand_overview_ppt_20260625_1430.figure_prompt.md`
+  - e.g. `misspelled_word_understand_scicomm_20260625_1430.figure_prompt.md`
   - Rule: **all-lowercase, underscores only, zero hyphens**; the only dots are in the extension. One
-    filename tells you what/for-whom/how-deep/what-style/when, and repeated renders never overwrite.
+    filename tells you what/for-whom/which-package/when, and repeated renders never overwrite.
 - **Hints/coordinates for the user** (focus/coverage/depth, "generate 3–4 and pick one", keep
   `fucntion` misspelled, etc.) go **in the chat reply, never in the file.**
 - **📍 By default, end the reply with the absolute path** of the prompt file (and on Codex, the
@@ -623,19 +536,23 @@ commentary mixed in (anything in the body gets copied with the prompt and pollut
 10. **Anti-tacky?** Did it degrade back into "boxes/squares + arrows / stacked feature-layers"? Is
     each concept drawn as a **real object** (not a labeled box)? Box-flow / tacky → **fails,
     rewrite.**
-11. **Offered the direction choice? (hard gate)** Before the first figure, were Step 2.5's 2–3
-    directions **actually surfaced as clickable options** for the user to pick, **each with an
-    ASCII sketch** so they compare without rendering? Quietly producing a figure with no choice
-    ever offered = failure (unless the user said "you decide / just draw it").
+11. **All three choice gates run? (hard gate)** Before the first figure, were these **actually
+    surfaced as clickable options**: ① **knowledge points ≤5** (user picks what to emphasize, not
+    defaulted) ② **package** (sci-comm / PPT / detailed / journal, sets how full) ③ **1–3 layout
+    directions** (each with a positional skeleton + nesting relationship + one note)? Skipping the
+    knowledge-points step, or quietly producing a figure = failure (unless the user said "you
+    decide / just draw it").
 12. **Color harmony?** One coherent register? Any jarring clash (a dark-green block in a cool
     figure)? Warm accent only on the focal point.
 13. **Jargon explained in place?** Do in-figure technical labels (logit, embedding, softmax …)
     carry a one-line plain note ("logit = candidate score, higher = more likely")? Bare jargon =
     not explained.
 14. **Pretty / not worse than SVG?** Did it degrade into a crude box diagram? (degrade → rewrite)
-15. **Complete enough (floor) and density appropriate?** Any crude/broken/empty/thin: a few boxes
-    + arrows + vast whitespace, no sub-primitives/legend/local detail? Conversely, dense for
-    density's sake, hurting clarity? **Clarity primary, completeness only a floor.**
+15. **Completeness matches the chosen package, density appropriate?** Any crude/broken/empty/thin: a
+    few boxes + arrows + vast whitespace, no sub-primitives/legend/local detail? **Detailed/journal:
+    is whitespace ≤20% and does every region expose internal structure** (don't ship a figure
+    sparser than the package picked)? Conversely, dense for density's sake, hurting clarity?
+    **Clarity primary, completeness only a floor.**
 16. **Right deliverable for the platform?** Claude = one prompt.md (no hand-coded SVG/PNG); Codex =
     image also generated and delivered with the prompt (stopping at the prompt = not done).
 

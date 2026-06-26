@@ -9,8 +9,8 @@
 - **Content-first**: works out the real distinction before drawing — a *skill* is a markdown
   instruction file loaded into the agent's context (no server, no new tools); an *MCP* is a
   running server that exposes new tools to the agent over a protocol.
-- **Understand-it path**: surfaces a few choices (focus / depth / style, then a direction), then
-  **converges** to one clear comparison figure — it doesn't pile on options.
+- **Understand-it path**: brainstorms the knowledge points to feature, picks a package, offers a
+  layout direction, then **converges** to one clear comparison figure — it doesn't pile on options.
 - Delivers the engineered prompt below (Claude: prompt only; Codex: prompt + image).
 
 ### The engineered image prompt
