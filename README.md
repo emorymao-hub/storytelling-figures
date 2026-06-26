@@ -47,7 +47,6 @@ SKILL.zh.md    # the same skill in Chinese (rename to SKILL.md to use it)
 examples/      # two worked examples, one per intent:
                #   understand-it (skill vs MCP) · produce-it (a misspelled word)
 README.md      # this file
-CHANGELOG.md   # design summary — why the guardrails exist
 LICENSE        # MIT
 ```
 
