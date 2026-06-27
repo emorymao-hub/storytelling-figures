@@ -42,7 +42,7 @@ git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.claude/ski
 # Codex
 git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.codex/skills/storytelling-figures
 ```
-Start a new session — it auto-discovers and triggers on intent. **For a Chinese-language skill body,** rename `SKILL.zh.md` to `SKILL.md`.
+Start a new session — it auto-discovers and triggers on intent. **It answers in the language you ask in** — English question → English, Chinese question → Chinese — whichever skill file is installed.
 
 ### How to use it
 Don't invoke it by hand. Talk through a concept, then say *"draw what we just discussed"* / *"this is too confusing, draw it so I get it"* / *"I need a journal method figure, give me layout ideas."* It harvests the chat, brainstorms the candidate knowledge points and asks which to feature (≤5), then a package (sci-comm / PPT / detailed / journal) and what to emphasize (comparison / at-a-glance / walk-through / mechanism), then engineers the prompt — leaving the composition to the image model.
@@ -54,8 +54,8 @@ Don't invoke it by hand. Talk through a concept, then say *"draw what we just di
 
 ### What's inside
 ```
-SKILL.md       # the whole skill (English), self-contained: workflow + guardrails
-SKILL.zh.md    # the same skill in Chinese (rename to SKILL.md to use it)
+SKILL.md       # the whole skill, self-contained: workflow + guardrails (English-authored)
+SKILL.zh.md    # the same skill authored in Chinese — read whichever you prefer; both behave identically
 README.md      # this file
 LICENSE        # MIT
 ```
@@ -99,7 +99,7 @@ git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.claude/ski
 # Codex
 git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.codex/skills/storytelling-figures
 ```
-新开会话即自动发现、按意图触发。**想用中文版规则**：把 `SKILL.zh.md` 改名成 `SKILL.md` 即可。
+新开会话即自动发现、按意图触发。**问什么语言就答什么语言**——问英文给英文、问中文回中文，跟装的是哪个文件无关。
 
 ### 怎么用
 不用手动调。聊透一个概念后随口说 *"把刚才这个画成图"* / *"太复杂了画出来理一理"* / *"我要画张 journal 方法图，给点布局灵感"*。它会收割对话、脑暴出可选知识点让你勾（≤5），再选套餐（科普 / PPT / 详细 / journal）和侧重点（侧重比较 / 秒懂 / 讲解 / 机理），最后工程化出 prompt——构图交给出图模型发挥。
