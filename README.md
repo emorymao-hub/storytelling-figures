@@ -15,13 +15,13 @@ You're chatting with an AI about some mechanism — how an LLM tokenizes a typo,
 It is **not** a figure renderer and **not** a chart library. Its whole job is to write *one good prompt* and avoid the failure modes that make AI-generated figures look wrong or tacky.
 
 ### Highlights
-What a model writing its own image prompt **won't reliably do on its own — and this skill enforces:**
+A model can already write an image prompt. The three things it **can't reliably do on its own — so the skill enforces them:**
 
-|  | A model alone… | …this skill enforces |
+| Guarantee | A model on its own tends to… | With the skill — enforced |
 | :-- | :-- | :-- |
-| **🔒 Honest content** | invents steps, leaks a background word ("the model") in as a concept, draws lines from nowhere | source-lock allow-list · correct-first mechanism check · input↔output closure |
-| **🎨 No templated look** | falls back to the same boxes-and-arrows and stacked "feature-layer" slabs | two hard rules + an inspiration *menu* · each concept drawn as its real object (remove-the-labels test) |
-| **🔤 Readable labels** | garbles or drops CJK / dense text, leaks instruction words into the image | every label baked in once · register-aware fonts · nothing dropped or leaked |
+| **🔒 Honest content** | invent steps, slip a background word ("the model") in as a concept, draw lines from nowhere | a source-lock allow-list, a correct-first mechanism check, and input↔output closure |
+| **🎨 No templated look** | fall back to the same boxes-and-arrows and stacked "feature-layer" slabs | two hard rules plus an inspiration menu; every concept drawn as its real object (the remove-the-labels test) |
+| **🔤 Readable labels** | garble or drop CJK / dense text, and leak instruction words into the image | every label baked in once, register-aware fonts, nothing dropped or leaked |
 
 ### What it actually does for you
 The model can already write an image prompt. What it can't reliably do on its own is avoid these:
@@ -72,13 +72,13 @@ Draws **mechanism / concept / process schematics**. For data charts use a plotti
 它**不是出图器、也不是画图表的库**。它唯一的活，是写**一个好 prompt**，并挡掉那些让 AI 配图又错又俗的翻车。
 
 ### 亮点
-模型自己写出图 prompt 时**稳不住、而这个 skill 强制做到的：**
+模型本来就会写出图 prompt；它**自己稳不住、得靠 skill 兜住的就这三件事：**
 
-|  | 模型自己会… | …skill 强制做到 |
+| 保证 | 模型自己出图，常翻车成… | 装上 skill，强制做到 |
 | :-- | :-- | :-- |
-| **🔒 内容不跑偏** | 臆造步骤、把背景词（泛指的"模型"）串成概念、画出悬空线 | 可见内容白名单（source-lock）· 先对后画的机制核实 · 输入↔输出守恒 |
-| **🎨 不千图一面** | 退回老一套方框+箭头、堆叠"特征层" | 两条硬规则 + 灵感*菜单* · 每个概念画成真实对象（去标签测试） |
-| **🔤 标签画得出** | 中文/密集文字糊掉或漏画、把指令词漏进图 | 每个标签一次画全 · 按 register 选字 · 不糊不掉不外泄 |
+| **🔒 内容不跑偏** | 臆造步骤、把背景词（如泛指的"模型"）误当概念、画出没来源的悬空线 | 可见内容白名单（source-lock）、先对后画核实机制、输入↔输出守恒 |
+| **🎨 不千图一面** | 退回千篇一律的"方框＋箭头"、堆叠"特征层"网格 | 仅两条硬规则＋一份灵感菜单；每个概念画成它真实的对象（盖住标签也认得出） |
+| **🔤 标签画得清** | 中文／密集文字糊成乱码或漏字、把 prompt 指令词漏进画面 | 每个标签一次画全、按场景选字体、不糊不漏不外泄 |
 
 ### 它到底替你干了啥
 模型本来就会写出图 prompt。它自己搞不定的，是稳定避开这些坑：
