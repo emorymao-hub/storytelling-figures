@@ -19,7 +19,6 @@ description: >-
   prompt plus a natively generated image; it never hand-codes SVG/PNG as a substitute.
   中文触发（同样适用）：把刚才讨论的画成示意图 / 太复杂了画出来理一理 / 帮我画个图解释这个 /
   我要做 PPT 的机制配图 / 画一张 journal 方法示意图 / 给我点布局排版灵感 / 出图 prompt。
-  （中文版规则见 SKILL.zh.md。）
 ---
 
 # storytelling-figures

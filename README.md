@@ -42,7 +42,7 @@ git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.claude/ski
 # Codex
 git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.codex/skills/storytelling-figures
 ```
-Start a new session — it auto-discovers and triggers on intent. **It answers in the language you ask in** — English question → English, Chinese question → Chinese — whichever skill file is installed.
+Start a new session — it auto-discovers and triggers on intent. **It answers in the language you ask in** — English question → English, Chinese question → Chinese.
 
 ### How to use it
 Don't invoke it by hand. Talk through a concept, then say *"draw what we just discussed"* / *"this is too confusing, draw it so I get it"* / *"I need a journal method figure, give me layout ideas."* It harvests the chat, brainstorms the candidate knowledge points and asks which to feature (≤5), then a package (sci-comm / PPT / detailed / journal) and what to emphasize (comparison / at-a-glance / walk-through / mechanism), then engineers the prompt — leaving the composition to the image model.
@@ -54,8 +54,7 @@ Don't invoke it by hand. Talk through a concept, then say *"draw what we just di
 
 ### What's inside
 ```
-SKILL.md       # the whole skill, self-contained: workflow + guardrails (English-authored)
-SKILL.zh.md    # the same skill authored in Chinese — read whichever you prefer; both behave identically
+SKILL.md       # the whole skill, self-contained: workflow + guardrails (replies in your question's language)
 README.md      # this file
 LICENSE        # MIT
 ```
