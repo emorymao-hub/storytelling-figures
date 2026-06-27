@@ -76,9 +76,17 @@ you and the image model. It is a **guardrail, not a template**.
   - **Claude = deliver `prompt.md` only, do not render.** Even if you judge a deterministic
     render (SVG/HTML) would be cleaner, **never render it yourself** — whether and how to
     render is the user's call; your deliverable is one `.md`.
-  - **Codex = prompt + image, in one shot.** After writing the prompt, immediately use Codex's
-    native text-to-image to generate the figure and deliver both in the same reply. Don't stop
-    at the prompt. Only fall back to "prompt only" if no usable generator exists, and say so.
+  - **Codex = prompt + image, in one shot — but "one shot" starts AFTER the three gates are
+    answered.** Gates ① knowledge points ② package ③ layout **must be surfaced and chosen by the
+    user first**; stopping to ask them **is NOT the complained-about gap — it is a required step**.
+    **Only after the user has chosen** do you "write the prompt → immediately render with Codex's
+    native text-to-image → deliver prompt + image in one reply." The complained-about gap is a
+    *different* thing: finishing all the figure engineering and then dropping just a prompt without
+    rendering, making the user click again — *that* is what you must not stop at. **Never use
+    "one shot / don't make the user click again" as an excuse to skip the gates and generate
+    straight away** (the tested failure was exactly this: read→fetch→write-prompt→generate in one
+    autonomous run, zero gates surfaced). Only fall back to "prompt only" if no usable generator
+    exists, and say so.
   - **Shared red line:** never hand-code SVG/PNG/HTML as a stand-in. Rendering only goes
     through a real text-to-image generator.
 - **Content first.** A figure visualizes an **answer you have actually worked out / clarified**,
@@ -208,7 +216,9 @@ register**, not a mold.
 > explicitly saying "you decide / just draw it / stop asking"** — the user's words, not your
 > judgment that the ask is clear. Handing composition to the model (Step 5) is a separate matter —
 > don't conflate: **presentation choices belong to the user, composition belongs to the model;
-> neither is yours (the agent) to silently decide.**
+> neither is yours (the agent) to silently decide.** ⚠️ Codex's "one shot" is *also* a separate
+> matter: it means "prompt + image rendered together **after** the three gates are answered," NOT
+> "skip the gates and generate" — never use it as an excuse to skip them.
 
 ### Step 1 — catch + harvest (first thing on being summoned)
 
