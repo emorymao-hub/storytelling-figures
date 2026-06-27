@@ -249,8 +249,5 @@ to image-2 to realize; you only name the emphasis.
 
 ---
 
-## Examples
-- `examples/skill_vs_mcp.md` — a full end-to-end run: explaining the difference between a skill and an MCP (ask → three gates → engineered prompt).
-
 > This file is self-contained — style DNA, prompt template and assembly order, and the
 > concept-breakdown method are all inlined above; no extra reference files needed.

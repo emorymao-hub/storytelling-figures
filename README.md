@@ -1,6 +1,6 @@
 # storytelling-figures
 
-**v6.0** · **[English](#english) · [中文](#中文)** · [Changelog](CHANGELOG.md)
+**v6.0** · **[English](#english) · [中文](#中文)**
 
 A **Claude Code / Codex skill** that turns a conversation into a clean, paste-ready
 **image-generation prompt** for scientific, conceptual and explanatory figures — and quietly keeps
@@ -47,16 +47,16 @@ Start a new session — it auto-discovers and triggers on intent. **For a Chines
 ### How to use it
 Don't invoke it by hand. Talk through a concept, then say *"draw what we just discussed"* / *"this is too confusing, draw it so I get it"* / *"I need a journal method figure, give me layout ideas."* It harvests the chat, brainstorms the candidate knowledge points and asks which to feature (≤5), then a package (sci-comm / PPT / detailed / journal) and what to emphasize (comparison / at-a-glance / walk-through / mechanism), then engineers the prompt — leaving the composition to the image model.
 
+> **Example ask:** *"Help me draw a diagram to explain the difference between a skill and an MCP."*
+> → it harvests the distinction, runs the three gates (knowledge points · package · emphasis), and hands back one paste-ready prompt.
+
 **Output by platform:** on **Claude** you get one `figure-prompt.md` to paste into the image model. On **Codex** with a native text-to-image tool, you get the prompt **and** the image together. Neither hand-codes SVG/PNG.
 
 ### What's inside
 ```
 SKILL.md       # the whole skill (English), self-contained: workflow + guardrails
 SKILL.zh.md    # the same skill in Chinese (rename to SKILL.md to use it)
-examples/      # one worked example, end to end:
-               #   skill_vs_mcp — the difference between a skill and an MCP
 README.md      # this file
-CHANGELOG.md   # version history
 LICENSE        # MIT
 ```
 
@@ -103,6 +103,9 @@ git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.codex/skil
 
 ### 怎么用
 不用手动调。聊透一个概念后随口说 *"把刚才这个画成图"* / *"太复杂了画出来理一理"* / *"我要画张 journal 方法图，给点布局灵感"*。它会收割对话、脑暴出可选知识点让你勾（≤5），再选套餐（科普 / PPT / 详细 / journal）和侧重点（侧重比较 / 秒懂 / 讲解 / 机理），最后工程化出 prompt——构图交给出图模型发挥。
+
+> **提问示例：** *"帮我画个图解释 skill 和 MCP 的区别。"*
+> → 它收割出二者的真实区别，走三道闸（知识点 · 套餐 · 强调），交回一个可直接粘的 prompt。
 
 **按平台交付**：**Claude** 端给你一个 `figure-prompt.md` 粘去出图；**Codex** 端若有原生文生图，prompt + 图一起给。两端都不手搓 SVG/PNG。
 

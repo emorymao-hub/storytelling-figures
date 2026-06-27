@@ -192,7 +192,4 @@ To use it, rename this file to `SKILL.md`.
 
 ---
 
-## 示例
-- `examples/skill_vs_mcp.md` —— 一个完整端到端示例：把"skill 和 MCP 的区别"讲清（口语请求 → 三道闸 → 工程化 prompt）。
-
 > 本文件已自洽自包含——风格 DNA、prompt 模板与装配顺序、概念拆解方法都已内联在上文，无需额外参考文件。
