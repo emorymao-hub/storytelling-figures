@@ -1,6 +1,6 @@
 # storytelling-figures
 
-**[English](#english) · [中文](#中文)**
+**v6.0** · **[English](#english) · [中文](#中文)** · [Changelog](CHANGELOG.md)
 
 A **Claude Code / Codex skill** that turns a conversation into a clean, paste-ready
 **image-generation prompt** for scientific, conceptual and explanatory figures — and quietly keeps
@@ -53,9 +53,10 @@ Don't invoke it by hand. Talk through a concept, then say *"draw what we just di
 ```
 SKILL.md       # the whole skill (English), self-contained: workflow + guardrails
 SKILL.zh.md    # the same skill in Chinese (rename to SKILL.md to use it)
-examples/      # two worked examples, one per intent:
-               #   understand-it (skill vs MCP) · produce-it (a misspelled word)
+examples/      # one worked example, end to end:
+               #   skill_vs_mcp — the difference between a skill and an MCP
 README.md      # this file
+CHANGELOG.md   # version history
 LICENSE        # MIT
 ```
 

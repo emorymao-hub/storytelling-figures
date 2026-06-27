@@ -1,17 +1,18 @@
-# Example — understand-it: "Skill vs MCP"
+# Example — Skill vs MCP
 
-**Intent: understand-it** (you want to grasp / explain a concept).
+One end-to-end run: you ask for a diagram, the skill harvests the idea, runs its three gates, and hands back a single paste-ready prompt.
 
 ### The plain-language ask
 > Help me draw a diagram to explain the difference between a skill and an MCP.
 
 ### What the skill does here
-- **Content-first**: works out the real distinction before drawing — a *skill* is a markdown
-  instruction file loaded into the agent's context (no server, no new tools); an *MCP* is a
-  running server that exposes new tools to the agent over a protocol.
-- **Understand-it path**: brainstorms the knowledge points to feature, picks a package, offers a
-  layout direction, then **converges** to one clear comparison figure — it doesn't pile on options.
-- Delivers the engineered prompt below (Claude: prompt only; Codex: prompt + image).
+1. **Gets the content right first.** It works out the real distinction before drawing — a *skill* is a markdown instruction file loaded into the agent's context (no server, no new tools); an *MCP* is a running server that exposes new tools to the agent over a protocol. A **source-lock** allow-list keeps stray model names or extra examples from leaking in.
+2. **Three gates — your only choices.** ① which knowledge points to feature (≤5) · ② which package (sci-comm / PPT / detailed / journal) · ③ what to **emphasize** (here: the contrast). It never dictates the layout — composition is handed to the image model.
+3. **Assembles the prompt.** Every label is baked in once (no garble, no blanks); each concept is drawn as its *real object* — an actual `SKILL.md` page, a real server with cabled tools — not a labeled rectangle.
+
+This maps straight onto the three highlights: **honest content** (source-lock), **no templated look** (real objects, not boxes), **readable labels** (baked in once).
+
+Deliverable — **Claude:** the prompt only. **Codex:** prompt + rendered image.
 
 ### The engineered image prompt
 ```

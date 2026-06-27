@@ -1,10 +1,9 @@
 # Examples
 
-Two worked examples, one per **intent** the skill detects from how you ask:
+One worked example, end to end.
 
-| File | Intent | When | What the skill does |
-|---|---|---|---|
-| [`understand_skill_vs_mcp.md`](understand_skill_vs_mcp.md) | **understand-it** | you want to *grasp / explain* a concept | works the real content out first, asks a little, **converges** to one clear figure |
-| [`produce_misspelled_word.md`](produce_misspelled_word.md) | **produce-it** | you already know it and are *making a deliverable* | doesn't re-teach you, **diverges** — offers layout directions, then engineers a polished prompt |
+| File | Topic | What it shows |
+|---|---|---|
+| [`skill_vs_mcp.md`](skill_vs_mcp.md) | the difference between a **skill** and an **MCP** | the plain-language ask that triggers the skill → its three gates (knowledge points · package · emphasis) → the engineered image prompt it returns |
 
-Each file shows the **plain-language ask** that triggered the skill and the **engineered image prompt** it produced. The deliverable on Claude is always just that prompt (you paste it into GPT image-2 / nano-banana); on Codex you also get the rendered image.
+On **Claude** the deliverable is that prompt (you paste it into GPT image-2 / nano-banana); on **Codex** you also get the rendered image. Neither hand-codes SVG/PNG.
