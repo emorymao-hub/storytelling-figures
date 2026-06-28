@@ -98,6 +98,8 @@ On invocation, **brainstorm immediately**: lay out **all the possible knowledge 
 
 Collapse the scattered depth / style / coverage axes into one "package" choice — the user picks a **destination** and the sensible defaults come bundled. Keep an "other / describe your own" escape hatch.
 
+> **Surface the whitespace % in the options you show the user** (sci-comm 45–60% / PPT 25–40% / detailed ≤20% / journal ≤20%) — the whitespace ratio is the clearest cue for "how full" the figure will be. It goes **in the option cards, not necessarily in the prompt.**
+
 | Package | For whom | Whitespace | Min elements | Internal detail | Goal |
 |---|---|---|---|---|---|
 | **Sci-comm** | laypeople / poster | 45–60% (airy) | 1 hero + 2–4 labels + 1 main line + 1 caption | hero drawn figuratively, rest minimal | grasp one concept in 3s |
@@ -142,6 +144,7 @@ Build the prompt in **assembly order** (constraints first → subject after → 
 6. **🔴 Hand composition back to the model, don't lock the layout, don't force a gimmick**: give GPT «the content map + guardrails + that Step 2 emphasis note» and that's enough — **placement / proportion / exact composition go back to the model** (`clean professional schematic, compose & scale freely`); don't dictate box positions — tested, forcing a layout came out worse than free-form. For a standard mechanism figure a conventional layout (panels / left→right) is the default; **difference comes only from real primitives + correct content, never from a machine / seesaw / metaphor gimmick. At this step the skill is a guardrail, not a composition director.**
 
 **While assembling, carry these "drawing red lines" into the prompt** (they're both how-to-draw and what Step 4 checks):
+- **Aspect ratio defaults to 16:9:** sci-comm / PPT / detailed always write `16:9 landscape` into the prompt; **journal is the exception** (panel/content-driven, often portrait or square); **if the user asks for another ratio, follow the user.**
 - **Formality:** carry the mechanism with real technical primitives, don't render abstractions as glowing / glass / toy machines; `lively` cartoon/glow only when the user explicitly wants outreach / a cover (but "formal" ≠ cold/thin — a professional figure can still be colorful, polished, information-dense).
 - **Anti-tacky + the de-label test:** draw each concept as **its real object/form**, **recognizable with the text label covered** (score → a real score bar, attention → a real heat mini-map, branching → real converging/diverging arrows); don't draw concepts as "labeled box + arrow" or stacked feature-layer grids, and don't go "icon + one word" throughout.
 - **Shared element drawn ONCE:** when two paths hit the same thing (same ID/node/region), draw **one shared element with multiple lines merging into it** (prompt: `draw it ONCE, both arrows merge into it`), not two copies pointing at the same target.
