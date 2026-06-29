@@ -113,51 +113,23 @@ git clone https://github.com/emorymao-hub/storytelling-figures.git ~/.codex/skil
 
 ---
 
-## Example — *skill vs MCP*, end to end · 范例
+## Example — *skill vs MCP* · 范例
 
-**The ask / 提问:** *"Help me draw a diagram explaining the difference between a skill and an MCP."*
-· *"帮我画个图解释 skill 和 MCP 的区别。"*
+**Just ask in plain words / 直接用大白话问:**
+> *"Help me draw a diagram explaining the difference between a skill and an MCP."*
+> *"帮我画个图解释 skill 和 MCP 的区别。"*
 
-**The three gates it surfaces / 它弹出的三道闸:**
+You don't invoke anything or write any prompt yourself. The agent **recognizes the intent and invokes the skill automatically**, then asks you a few quick clickable choices and hands back the finished prompt (on Codex, the image too).
+
+你不用手动调用、也不用自己写 prompt。**agent 会自动识别意图、调起这个 skill**，弹几个可点选择让你定，再把做好的 prompt 交给你（Codex 端连图一起给）。
+
+**The three choices it surfaces / 它弹出的三道闸:**
 
 | Gate / 闸 | For this figure / 这张图 |
 | :-- | :-- |
 | ① Knowledge points · 知识点 | what each **is** (a context doc vs a callable server) · how it reaches the model (progressive disclosure vs a tool-call protocol) · what it changes (**knows** vs **does**) |
 | ② Package · 套餐 | **PPT** — a talk slide / 报告幻灯 |
 | ③ Emphasis · 强调 | **comparison** — foreground the one real difference / 侧重比较 |
-
-**The engineered prompt it hands back / 交回的出图 prompt:**
-
-```text
-A clean, professional 16:9 comparison schematic contrasting a "Skill" and an "MCP" for an AI agent. Off-white background, polished Keynote / method-figure look, flat vector-like technical glyphs, soft shadows. Two columns sharing one center, one calm base color per side (slate for Skill, teal for MCP) and a single warm amber accent on the key difference. No cartoon, no glowing/glass machines, no concepts drawn as plain labeled boxes wired by arrows.
-
-VISIBLE CONTENT SOURCE-LOCK:
-- Only render the words/entities listed in TEXT below. Do NOT add synonyms, product names, or extra examples.
-
-TEXT (render ALL in one shot, leave NOTHING blank; spell each EXACTLY; English; legible Arial-like sans; horizontal; no overlap; no watermark; no "Figure 1:" bar):
-- "Skill", "MCP", "the model"
-- "SKILL.md", "tool manifest"
-- "instructions / know-how", "running server + tools"
-- "loaded into context", "called over a protocol"
-- "progressive disclosure", "JSON-RPC tool call"
-- "changes what the model KNOWS", "changes what the model can DO"
-
-DO NOT RENDER META CONTENT:
-- Do NOT draw layout words ("left"/"column"), color specs, or any of this prompt as visible text — only the labels above plus the figure.
-
-SUBJECT & LAYOUT (two columns sharing ONE center "the model", drawn once):
-- LEFT — Skill: a real markdown document labeled "SKILL.md" (visible heading + bullet lines) that unfolds in stages ("progressive disclosure") and flows as text INTO the model's context panel ("loaded into context"); tag the column "instructions / know-how" and "changes what the model KNOWS".
-- RIGHT — MCP: a real server with a small "tool manifest" (rows of tool names); the model sends a "JSON-RPC tool call" arrow to the server, which runs and returns a result chip ("called over a protocol"); tag the column "running server + tools" and "changes what the model can DO".
-- CENTER: one shared "the model" drawn ONCE between the columns — Skill feeds its context, MCP exchanges call/result with it; both sides' arrows connect to this single shared element.
-
-STYLE & COMPLETENESS:
-- Draw each side as its ACTUAL object — Skill as a real document with readable headings/bullets, MCP as a real server with a tool list and a request→response round-trip — NOT two identical labeled rectangles. Medium density, every label legible, the "knows vs does" contrast obvious.
-
-Generate a publication-quality 16:9 comparison figure with the "knows vs does" contrast as the focal point.
-```
-
-> **Correct-first:** the figure says *Skill = instructions loaded into context (changes what the model **knows**)* vs *MCP = a running server of tools called over a protocol (changes what the model can **do**)* — each drawn as its real object (a document vs a server with a tool manifest), the shared "the model" drawn once, every label baked in. That's the skill's guardrails doing their job, not a template.
-> **先对后画：** 图讲的是 *Skill＝注入上下文的说明书（改变模型"知道"什么）* vs *MCP＝按协议调用的工具服务器（改变模型"能做"什么）*——各画成真实对象（文档 vs 带工具清单的服务器），共享的"the model"只画一个，每个标签都画进图。这就是 skill 的护栏在起作用，而不是套模板。
 
 ---
 
