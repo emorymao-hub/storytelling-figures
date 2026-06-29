@@ -123,14 +123,6 @@ You don't invoke anything or write any prompt yourself. The agent **recognizes t
 
 你不用手动调用、也不用自己写 prompt。**agent 会自动识别意图、调起这个 skill**，弹几个可点选择让你定，再把做好的 prompt 交给你（Codex 端连图一起给）。
 
-**The three choices it surfaces / 它弹出的三道闸:**
-
-| Gate / 闸 | For this figure / 这张图 |
-| :-- | :-- |
-| ① Knowledge points · 知识点 | what each **is** (a context doc vs a callable server) · how it reaches the model (progressive disclosure vs a tool-call protocol) · what it changes (**knows** vs **does**) |
-| ② Package · 套餐 | **PPT** — a talk slide / 报告幻灯 |
-| ③ Emphasis · 强调 | **comparison** — foreground the one real difference / 侧重比较 |
-
 ---
 
 ## License
