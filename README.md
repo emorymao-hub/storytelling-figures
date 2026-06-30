@@ -20,10 +20,10 @@ A model can already write an image prompt. The catch is **aiming it** — the th
 | What you get | By yourself | With the skill |
 | :-- | :-- | :-- |
 | **🎯 Hits your target** | ❌ a vague prompt → a random draw, rarely the figure you pictured | ✅ pins the few choices that narrow it to *your* figure — which points (≤5), how full, what to emphasize |
-| **🔒 No made-up / stray content** | ❌ invents steps, slips a passing background word in as a concept | ✅ a source-lock allow-list — only the elements you approved get drawn |
+| **🔒 No made-up / stray content** | ❌ invents steps, slips a passing background word in as a concept | ✅ a word allow-list (source-lock) — only what's on it gets drawn, nothing invented |
 | **📐 Logically consistent** | ❌ lines from nowhere, content warped to make the layout look nice | ✅ input↔output closure, no dangling lines, content not bent for looks |
 
-**Honest about the ceiling.** It **raises the hit-rate and tells you what to check — it doesn't guarantee** the model obeys; you still generate a few and pick the best. *Composition* (metaphor, palette, layout) is deliberately left to the model — forcing it tested worse. Anti–"same-face" styling and label legibility help too, but a careful prompter can ask for those, and dense CJK still garbles. The skill is a **guardrail, not a template**.
+**Honest about the ceiling.** It **raises the hit-rate and tells you what to check — it doesn't guarantee** the model obeys; you still generate a few and pick the best. *Composition* (metaphor, palette, layout) is deliberately left to the model — forcing it tested worse. It also pushes every concept to read even with its text label removed (more visual, less labelling) and keeps labels legible — helpful, but a careful prompter can ask for those too, and dense CJK still garbles. The skill is a **guardrail, not a template**.
 
 ### Install
 Pure markdown — no dependencies, no API keys.
@@ -67,10 +67,10 @@ Draws **mechanism / concept / process schematics**. For data charts use a plotti
 | 你能得到 | 自己提示 | 装上 skill |
 | :-- | :-- | :-- |
 | **🎯 打得中你的目标** | ❌ 含糊一句 → 随机抽，很少是你脑中那张 | ✅ 钉住那几个把输出收窄到*你那张图*的选择——画哪几个点（≤5）、画多满、强调什么 |
-| **🔒 不臆造、不串词** | ❌ 编步骤、把路过的背景词当概念塞进图 | ✅ 可见内容白名单（source-lock）——只画你认可的元件 |
+| **🔒 不臆造、不串词** | ❌ 编步骤、把路过的背景词当概念塞进图 | ✅ 设一份用词白名单（source-lock）——只画名单里的，不乱写 |
 | **📐 逻辑自洽** | ❌ 线从空白处飘来、为布局好看把内容拧失真 | ✅ 输入↔输出守恒、线不悬空、内容不为好看变形 |
 
-**对天花板说实话。** 它**把命中率拉高、告诉你该查什么——但不保证**模型一定照做；你仍是生成几张挑一张。*构图*（隐喻、配色、布局）**故意**交给模型——硬锁实测更差。反"同脸"和标签清晰也有帮助，但懂行的人自己也能要求，且密集中文仍会糊。skill 是**护栏，不是模板**。
+**丑话说前头。** 它**把命中率拉高、告诉你该查什么——但不保证**模型一定照做；你仍是生成几张挑一张。*构图*（隐喻、配色、布局）**故意**交给模型——硬锁实测更差。它还会**提高形象化**（抹掉文字注释也认得出）、并尽量让标签清晰——有帮助，但懂行的人自己也能要求，且密集中文仍会糊。skill 是**护栏，不是模板**。
 
 ### 安装
 纯 markdown，无依赖、不要 key。
