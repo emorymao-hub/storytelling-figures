@@ -14,25 +14,15 @@ You're chatting with an AI about some mechanism — how an LLM tokenizes a typo,
 
 It is **not** a figure renderer and **not** a chart library. Its whole job is to write *one good prompt* and avoid the failure modes that make AI-generated figures look wrong or tacky.
 
-### Highlights
-A model can already write an image prompt. The three things it **can't reliably do on its own — so the skill enforces them:**
+### What you can't get by vibe-prompting
+A model can already write an image prompt. The catch is **aiming**. Vibe-prompt image-2 yourself and it's a lottery: a vague prompt under-constrains the model, so you get a random draw that rarely lands on the figure you pictured — and drifts on depth, fidelity and style. The one thing this skill does that a casual prompt **structurally can't** is **aim it** — and aiming is two things:
 
-| Guarantee | A model on its own tends to… | With the skill — enforced |
-| :-- | :-- | :-- |
-| **🔒 Honest content** | invent steps, slip a background word ("the model") in as a concept, draw lines from nowhere | a source-lock allow-list, a correct-first mechanism check, and input↔output closure |
-| **🎨 No templated look** | fall back to the same boxes-and-arrows and stacked "feature-layer" slabs | two hard rules plus an inspiration menu; every concept drawn as its real object (the remove-the-labels test) |
-| **🔤 Readable labels** | garble or drop CJK / dense text, and leak instruction words into the image | every label baked in once, register-aware fonts, nothing dropped or leaked |
+- **🎯 It pins your target.** It pulls out the few decisions that actually narrow the output to *your* figure — which points to feature (≤5), how full (the package), what to emphasize — the constraints vibe-prompting skips, which is exactly why vibe is a lottery.
+- **🔒 It locks the logic a diffusion model ignores.** Image-2 doesn't reason about consistency: it invents steps, slips a passing background word ("the model") in as a concept, draws lines from nowhere, warps content to make the layout look nice. The skill front-loads the constraints that forbid each — a source-lock allow-list, a correct-first mechanism check, input↔output closure, no dangling lines — plus a checklist of what to verify.
 
-### What it actually does for you
-The model can already write an image prompt. What it can't reliably do on its own is avoid these:
-- **Gibberish / dropped labels** — CJK and dense text garble. The skill bakes every label in once, with explicit "render exactly" instructions.
-- **Made-up / leaked content** — a background word from the chat ("the model") sneaks in as a diagram concept. A *source-lock* allow-list blocks that.
-- **Logical inconsistency** — an output appears with no matching input; a dangling line arrives from nowhere. An *input↔output closure* check forbids it.
-- **Tacky, dated look** — stacked "feature-layer" slabs, everything a labeled box wired by arrows. Hard rule + a *remove-the-labels test*: draw each concept as the **real object**, not a box.
-- **Wrong visual effort** — it spends the rich, figurative detail on the *core* and keeps connectors and secondary parts quiet (visual effort follows focus).
-- **Font / layout traps** — register-aware fonts, one-ellipsis-per-column, no instruction text leaking into the image.
+**Honest about the ceiling.** This **raises the hit-rate and tells you what to check; it does not guarantee** image-2 obeys — you still generate a few and pick the best. And everything *composition* — metaphor, palette, layout — is deliberately left to the model: tested, forcing the layout comes out worse than letting it compose. The skill stays a **guardrail, not a template**.
 
-Everything else — the metaphor, palette, composition, how dense — is left to you (via clickable, heuristic option prompts) and the image model. The skill stays a **guardrail, not a template**.
+**Also, but not magic.** It draws each concept as a real object instead of a labeled box and varies every figure to dodge the AI "same-face" look, and it bakes each label in once with short strings to cut CJK garble. These help — but a careful prompter could ask for them too, and image-2 still can't render dense CJK cleanly, so labels are *minimized, not guaranteed*.
 
 ### Install
 Pure markdown — no dependencies, no API keys.
@@ -70,25 +60,15 @@ Draws **mechanism / concept / process schematics**. For data charts use a plotti
 
 它**不是出图器、也不是画图表的库**。它唯一的活，是写**一个好 prompt**，并挡掉那些让 AI 配图又错又俗的翻车。
 
-### 亮点
-模型本来就会写出图 prompt；它**自己稳不住、得靠 skill 兜住的就这三件事：**
+### vibe 自己调 image-2 拿不到的
+模型本来就会写出图 prompt，难的是**瞄准**。你自己 vibe 一句喂给 image-2，基本是摇奖：提示词太含糊、约束不住模型，出来的是一把随机抽，很少正好是你脑子里那张——还会在**详略、保真、风格**上漂移。这个 skill 唯一一件 vibe **结构上做不到**的事，就是**帮你瞄准**——而瞄准是两件事：
 
-| 保证 | 模型自己出图，常翻车成… | 装上 skill，强制做到 |
-| :-- | :-- | :-- |
-| **🔒 内容不跑偏** | 臆造步骤、把背景词（如泛指的"模型"）误当概念、画出没来源的悬空线 | 可见内容白名单（source-lock）、先对后画核实机制、输入↔输出守恒 |
-| **🎨 不千图一面** | 退回千篇一律的"方框＋箭头"、堆叠"特征层"网格 | 仅两条硬规则＋一份灵感菜单；每个概念画成它真实的对象（盖住标签也认得出） |
-| **🔤 标签画得清** | 中文／密集文字糊成乱码或漏字、把 prompt 指令词漏进画面 | 每个标签一次画全、按场景选字体、不糊不漏不外泄 |
+- **🎯 钉住你的目标。** 它逼出那几个真正能把输出收窄到*你那张图*的决定——画哪几个点（≤5）、画多满（套餐）、强调什么——正是 vibe 跳过的约束，也正是 vibe 变摇奖的原因。
+- **🔒 锁死扩散模型不管的逻辑。** image-2 不做一致性推理：它编步骤、把路过的背景词（泛指的"模型"）当概念塞进去、画出没来源的线、为了布局好看把内容拧失真。skill 把禁止这些的约束**前置**进 prompt——可见内容白名单（source-lock）、先对后画、输入↔输出守恒、线不悬空——外加一份"该检查啥"的清单。
 
-### 它到底替你干了啥
-模型本来就会写出图 prompt。它自己搞不定的，是稳定避开这些坑：
-- **乱码 / 掉标签**——中文和密集文字易糊。skill 把每个标签逐字写进、并下"照写清楚"的硬指令。
-- **臆造 / 串词**——对话里的背景词（如泛指的"模型"）混进图当概念节点。**可见内容白名单（source-lock）**挡住。
-- **逻辑不自洽**——有输出却没配对输入；一条线从空白处飘来（悬空线）。**输入↔输出守恒**禁止。
-- **俗气、过时**——堆叠"特征层"、通篇贴标签方框+箭头。硬规则 +「**去标签测试**」：每个概念画成**真实对象**，不是盒子。
-- **力气花错地方**——把精致、形象化的预算花在**核心**上，连接线和配角沉住（视觉详略跟着 focus 走）。
-- **字体/版式坑**——字体按 register 分、省略号每列一处、指令词不外泄进图。
+**对天花板说实话。** 它**把命中率拉高、告诉你该查什么；但不保证** image-2 一定照做——你仍是生成几张挑一张。而所有*构图*——隐喻、配色、布局——是**故意**留给模型的：实测硬锁布局比放手更差。skill 始终是**护栏，不是模板**。
 
-其余——隐喻、配色、构图、画多密——都通过**可点选项、启发式**交给你和图模型。skill 始终是**护栏，不是模板**。
+**还有，但不是魔法。** 它把每个概念画成真实对象而不是贴标签的方框、并让每张图都不一样以躲开 AI"同脸"；也把每个标签烤一次、尽量用短词来压中文乱码。这些有用——但懂行的人自己也能要求，而且 image-2 仍渲染不好密集中文，所以标签是*尽量少烤、不是保证完美*。
 
 ### 安装
 纯 markdown，无依赖、不要 key。
