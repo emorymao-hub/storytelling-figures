@@ -6,6 +6,8 @@ A **Claude Code / Codex skill** that turns a conversation into a clean, paste-re
 **image-generation prompt** for scientific, conceptual and explanatory figures — and quietly keeps
 the model from making the usual weird mistakes.
 
+![How it works: a conversation becomes a paste-ready image prompt](assets/how-it-works.png)
+
 ---
 
 ## English
@@ -23,6 +25,8 @@ A model can already write an image prompt. The catch is **aiming it** — the th
 | **🔒 No made-up / stray content** | ❌ invents steps, slips a passing background word in as a concept | ✅ auto-builds a word allow-list (source-lock) — no invented, off-vocabulary terms |
 | **📐 Logically consistent** | ❌ lines from nowhere, content warped to make the layout look nice | ✅ input↔output closure, no dangling lines, content not bent for looks |
 | **🎨 Reads without labels** | ❌ leans on text labels — strip them and it's unrecognizable boxes | ✅ each concept drawn as a real object, legible with the text removed |
+
+![By yourself vs. with the skill — the four things the skill aims for](assets/highlights.png)
 
 **Honest about the ceiling.** It **raises the hit-rate and tells you what to check — it doesn't guarantee** the model obeys. The skill is a **guardrail, not a template**.
 
@@ -71,6 +75,8 @@ Draws **mechanism / concept / process schematics**. For data charts use a plotti
 | **🔒 不臆造、不串词** | ❌ 编步骤、把路过的背景词当概念塞进图 | ✅ 自动生成用词白名单（source-lock）——不臆想非常规用词 |
 | **📐 逻辑自洽** | ❌ 线从空白处飘来、为布局好看把内容拧失真 | ✅ 输入↔输出守恒、线不悬空、内容不为好看变形 |
 | **🎨 提高形象化** | ❌ 靠文字标签撑着，标签一抹就认不出、一堆方框 | ✅ 每个概念画成真实对象，抹掉文字注释也认得出 |
+
+![自己提示 vs 装上 skill —— skill 瞄准的四件事](assets/highlights.png)
 
 **注意：** 它**把命中率拉高、告诉你该查什么——但不保证**模型一定照做。skill 是**护栏，不是模板**。
 
