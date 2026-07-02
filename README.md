@@ -76,8 +76,6 @@ Draws **mechanism / concept / process schematics**. For data charts use a plotti
 | **📐 逻辑自洽** | ❌ 线从空白处飘来、为布局好看把内容拧失真 | ✅ 输入↔输出守恒、线不悬空、内容不为好看变形 |
 | **🎨 提高形象化** | ❌ 靠文字标签撑着，标签一抹就认不出、一堆方框 | ✅ 每个概念画成真实对象，抹掉文字注释也认得出 |
 
-![自己提示 vs 装上 skill —— skill 瞄准的四件事](assets/highlights.png)
-
 **注意：** 它**把命中率拉高、告诉你该查什么——但不保证**模型一定照做。skill 是**护栏，不是模板**。
 
 ### 安装
